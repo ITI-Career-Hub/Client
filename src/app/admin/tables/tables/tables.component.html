@@ -1,0 +1,77 @@
+<section style="display: flex; justify-content: space-between; align-items: center;">
+  <div>
+    <h1>_VOIS</h1>
+  </div>
+
+  <div>
+    <button mat-raised-button color="primary">Schedule new interview</button>
+  </div>
+
+
+
+</section>
+
+<section style="display: flex; width: 100%;">
+  <div style="flex: 1;">
+    <app-stat [bgClass]="'info'" [icon]="'attach_money'" [count]="13" [label]="'TOTAL INTERVIEWS'"></app-stat>
+  </div>
+  <div style="flex: 0.2;"></div>
+  <div style="flex: 1;">
+    <app-stat [bgClass]="'info'" [icon]="'signal_cellular_alt'" [count]="12" [label]="'TRACKS'"></app-stat>
+  </div>
+</section>
+
+
+
+
+<section id="sample-table" class="mat-elevation-z8 bg-white">
+  <h2 class="table-header">Track Scheduled for Interview</h2>
+  <!-- <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field> -->
+  <table mat-table [dataSource]="dataSource" matSort class="w-100">
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Track Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.trackName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="candidatesNum">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Number Of Candidates </th>
+      <td mat-cell *matCellDef="let row"> {{row.candidatesNum}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="interviewer">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Interviewer </th>
+      <td mat-cell *matCellDef="let row"> {{row.interviewer}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let row"> {{row.date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="color">
+      <th mat-header-cell *matHeaderCellDef> Edit </th>
+      <td mat-cell *matCellDef="let row">
+        <a href="#" style="color: blue;">Edit</a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+  </table>
+
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</section>
