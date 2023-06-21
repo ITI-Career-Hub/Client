@@ -21,6 +21,11 @@ const routes: Routes = [
       import('./admin/admin-register-student-user/admin-register-student-user.module').then((m) => m.AdminRegisterStudentUserModule),
   },
   {
+    path: 'signup',
+    loadChildren: () =>
+      import('./admin/student-own-register/studnet-own-register.module').then((m) => m.StudnetOwnRegisterModule),
+  },
+  {
     path: '**',
     component: PageNotFoundComponent,
   },
