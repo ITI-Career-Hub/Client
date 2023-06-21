@@ -26,9 +26,9 @@ const routes: Routes = [
     path: 'signup',
     loadChildren: () =>
       import('./admin/student-own-register/studnet-own-register.module').then((m) => m.StudnetOwnRegisterModule),
-
+  }, {
     path: 'profile',
-    component:ProfileComponent,
+    component: ProfileComponent,
     loadChildren: () =>
       import('./profile/profile.module').then((m) => m.ProfileModule),
 
@@ -37,7 +37,7 @@ const routes: Routes = [
     path: '**',
     component: PageNotFoundComponent,
   },
- 
+
 ];
 
 @NgModule({
