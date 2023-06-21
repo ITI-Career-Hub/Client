@@ -27,4 +27,4 @@ import { SideNavComponent } from './layout/side-nav/side-nav.component';
   ],
   declarations: [LayoutComponent, TopNavComponent, SideNavComponent]
 })
-export class AdminModule {}
+export class AdminModule { }

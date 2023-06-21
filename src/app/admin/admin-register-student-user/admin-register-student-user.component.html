@@ -1,0 +1,40 @@
+<div class="login-page">
+    <div class="content px20">
+        <form class="login-form" #myForm="ngForm" (ngSubmit)="onLogin()">
+            <div class="text-center">
+                <h2 class="app-name">Register New Student</h2>
+            </div>
+            <div fxLayout="row">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Username">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Email">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Username">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Department</mat-label>
+                        <mat-select [(ngModel)]="selectedValue" name="departments">
+                            <mat-option *ngFor="let department of departments" [value]="department">
+                                {{department}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput type="number" placeholder="Intake number" min="1" value="43">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxLayout="row">
+                <div fxFlexFill>
+                    <button type="submit" mat-raised-button color="primary" class="w-100">Create New Student</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
