@@ -1,0 +1,260 @@
+.test {
+    box-sizing: border-box;
+  
+    /* Auto layout */
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 26px 48px;
+    // gap: 37px;
+  
+    // position: absolute;
+    width: 223px;
+    height: 259px;
+    // left: 34px;
+    // top: 136px;
+  
+    background: #FFFFFF;
+    /* Other/Divider */
+  
+    border: 1px solid #E6EAEE;
+    /* Drop Shadow Standard */
+  
+    box-shadow: 0px 8px 24px rgba(21, 21, 22, 0.04);
+    border-radius: 10px;
+  }
+  
+  .image {
+    width: 86px;
+    height: 86px;
+  
+    background: #D9D9D9;
+  
+    /* Inside auto layout */
+  
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  
+    border-radius: 50%;
+  }
+  
+  .name {
+    width: 113px;
+    height: 22px;
+  
+    /* /Heading / H5 */
+  
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    // line-height: 22px;
+    /* identical to box height */
+  
+    // letter-spacing: 0.005em;
+  
+    /* /Text / Primary */
+  
+    color: #0F2744;
+  
+  
+    /* Inside auto layout */
+  
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+  
+  .track {
+    width: 125px;
+    height: 14px;
+  
+    /* Caption / C2 */
+  
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    // line-height: 14px;
+    /* identical to box height, or 140% */
+  
+    text-align: center;
+  
+    /* /Text / Secondary */
+  
+    color: #728095;
+  
+  
+    /* Inside auto layout */
+  
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+  }
+  
+  
+  .edit {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 27px;
+  
+    width: 127px;
+    height: 32px;
+  
+    /* Secondary / Default */
+  
+    background: #E3E8F0;
+    border-radius: 4px;
+  
+    /* Inside auto layout */
+  
+    flex: none;
+    order: 3;
+    flex-grow: 0;
+    text-decoration: none;
+  }
+  
+  
+  .total {
+    box-sizing: border-box;
+  
+    /* Auto layout */
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px 8px;
+  
+    width: 224px;
+    height: 59px;
+  
+    /* Other / White */
+  
+    background: #FFFFFF;
+    /* Other/Divider */
+  
+    border: 1px solid #E6EAEE;
+    /* Drop Shadow Standard */
+  
+    box-shadow: 0px 8px 24px rgba(21, 21, 22, 0.04);
+    border-radius: 8px;
+  
+  }
+  
+  .interview {
+    width: 123px;
+    height: 22px;
+    left: 304px;
+    top: 136px;
+  
+    /* /Heading / H5 */
+  
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+  
+    letter-spacing: 0.005em;
+  
+    /* /Text / Secondary */
+  
+    color: #728095;
+  }
+  
+  .tab {
+    margin: 10px;
+    padding: 0px 25px;
+    display: flex;
+    // flex-direction: row;
+    align-items: center;
+    // width: 69px;
+    height: 60px;
+    text-align: center;
+    justify-content: center;
+  
+    /* white */
+  
+    background: #FFFFFF;
+    border-radius: 28px;
+  
+  }
+  
+  .active-tab {
+    background-color: #BBCADF;
+  }
+  
+  .date {
+    width: 121px;
+    height: 33px;
+  
+  
+  
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 33px;
+  
+    color: #728095;
+  }
+  
+  
+  .interview-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    // justify-content: space-between;
+    padding: 7px 16px;
+  
+    width: 503px;
+    height: 82px;
+  
+    /* Other / White */
+  
+    background: #FFFFFF;
+    border-radius: 10px;
+  }
+  
+  .user-image {
+    box-sizing: border-box;
+  
+    border: 1px solid #FFFFFF;
+    border-radius: 32px;
+  }
+  
+  .text {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    /* identical to box height, or 138% */
+  
+  
+    /* /Text / Secondary */
+  
+    color: #728095;
+  
+  }
+  
+  .check {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8px;
+  
+    width: 32px;
+    height: 32px;
+  
+    /* Secondary / Dark */
+  
+    background: #BBCADF;
+    border-radius: 4px;
+  
+  }
