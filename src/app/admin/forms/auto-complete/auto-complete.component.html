@@ -5,7 +5,8 @@
     </mat-card-header>
     <mat-card-content class="auto-field">
       <mat-form-field>
-        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+          [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{option}}
@@ -21,7 +22,8 @@
     </mat-card-header>
     <mat-card-content class="auto-field">
       <mat-form-field>
-        <input type="text" placeholder="Assignee" aria-label="Assignee" matInput [formControl]="myControl2" [matAutocomplete]="auto2">
+        <input type="text" placeholder="Assignee" aria-label="Assignee" matInput [formControl]="myControl2"
+          [matAutocomplete]="auto2">
         <mat-autocomplete #auto2="matAutocomplete" [displayWith]="displayFn">
           <mat-option *ngFor="let option of filteredOptions2 | async" [value]="option">
             {{option.name}}
@@ -37,7 +39,8 @@
     </mat-card-header>
     <mat-card-content class="auto-field">
       <div class="custom-wrapper-example" matAutocompleteOrigin #origin="matAutocompleteOrigin">
-        <input matInput placeholder="Pick one" [formControl]="myControl3" [matAutocomplete]="auto3" [matAutocompleteConnectedTo]="origin">
+        <input matInput placeholder="Pick one" [formControl]="myControl3" [matAutocomplete]="auto3"
+          [matAutocompleteConnectedTo]="origin">
       </div>
 
       <mat-autocomplete #auto3="matAutocomplete">

@@ -17,10 +17,21 @@ const routes: Routes = [
       import('./login/login.module').then((m) => m.LoginModule),
   },
   {
+
+    path: 'register',
+    loadChildren: () =>
+      import('./admin/admin-register-student-user/admin-register-student-user.module').then((m) => m.AdminRegisterStudentUserModule),
+  },
+  {
+    path: 'signup',
+    loadChildren: () =>
+      import('./admin/student-own-register/studnet-own-register.module').then((m) => m.StudnetOwnRegisterModule),
+
     path: 'profile',
     component:ProfileComponent,
     loadChildren: () =>
       import('./profile/profile.module').then((m) => m.ProfileModule),
+
   },
   {
     path: '**',
@@ -33,4 +44,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

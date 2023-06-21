@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
+import { AdminRegisterStudentUserComponent } from './admin-register-student-user.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
+import { AdminRegisterStudentUserRoutingModule } from './admin-register-student-routing.module';
+import { MatSelectModule } from '@angular/material/select';
 
-import { LoginRoutingModule } from './login-routing.module';
-import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
+  declarations: [AdminRegisterStudentUserComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -18,8 +20,8 @@ import { LoginComponent } from './login/login.component';
     MatInputModule,
     MatCheckboxModule,
     MatButtonModule,
-    LoginRoutingModule
-  ],
-  declarations: [LoginComponent]
+    AdminRegisterStudentUserRoutingModule,
+    MatSelectModule
+  ]
 })
-export class LoginModule { }
+export class AdminRegisterStudentUserModule { }
