@@ -45,8 +45,7 @@ const routes: Routes = [
     path: 'company/signup/:token',
     loadChildren: () =>
       import('./admin/company-owner-register/company-owner-register.module').then((m) => m.CompanyOwnerRegisterModule),
-  },
-  {
+  }, {
     path: 'profile',
     component: ProfileComponent,
     loadChildren: () =>
