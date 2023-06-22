@@ -24,8 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     StaffOwnerRegisterRoutingModule,
     MatSelectModule,
-    MatChipsModule,
-    MatIconModule,
+
   ]
 })
 export class StaffOwnerRegisterModule { }
