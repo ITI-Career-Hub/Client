@@ -12,7 +12,8 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { LayoutComponent } from './layout/layout.component';
 import { TopNavComponent } from './layout/top-nav/top-nav.component';
 import { SideNavComponent } from './layout/side-nav/side-nav.component';
-import { StudentOwnRegisterComponent } from './student-own-register/student-own-register.component';
+import { MatChipsModule } from '@angular/material/chips';
+
 
 @NgModule({
   imports: [
@@ -24,7 +25,10 @@ import { StudentOwnRegisterComponent } from './student-own-register/student-own-
     MatIconModule,
     MatInputModule,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    MatIconModule,
+    MatChipsModule,
+
   ],
   declarations: [LayoutComponent, TopNavComponent, SideNavComponent]
 })

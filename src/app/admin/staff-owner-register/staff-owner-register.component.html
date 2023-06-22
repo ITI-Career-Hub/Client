@@ -1,6 +1,6 @@
 <div class="login-page">
     <div class="content px20">
-        <form class="login-form" #myForm="ngForm" (ngSubmit)="createUser()">
+        <form class="login-form" #myForm="ngForm" (ngSubmit)="createStaff()">
             <div class="text-center">
                 <h2 class="app-name">Complete your profile</h2>
             </div>
@@ -10,6 +10,8 @@
                         <input matInput name="email" [(ngModel)]="email" placeholder="Email" disabled type="email"
                             value="example@gmail.com">
                     </mat-form-field>
+
+
                     <mat-form-field class="w-100">
                         <input name="password" [(ngModel)]="password" matInput type="password" placeholder="Password">
                     </mat-form-field>
@@ -21,17 +23,6 @@
                     </mat-form-field>
                     <mat-form-field class="w-100">
                         <input matInput name="lastName" [(ngModel)]="lastName" placeholder="Last Name">
-                    </mat-form-field>
-                    <mat-form-field class="w-100">
-                        <input matInput name="college" [(ngModel)]="college" placeholder="College">
-                    </mat-form-field>
-                    <mat-form-field class="w-100">
-                        <input matInput type="tel" name="phoneNumber" [(ngModel)]="phoneNumber"
-                            placeholder="Phone Number">
-                    </mat-form-field>
-                    <mat-form-field class="w-100">
-                        <input matInput type="number" name="graduationYear" [(ngModel)]="graduationYear"
-                            placeholder="Graduation Year" value="2022">
                     </mat-form-field>
                 </div>
             </div>
