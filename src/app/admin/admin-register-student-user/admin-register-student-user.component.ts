@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { DepartmentService } from 'src/app/services/department.service';
 
 
 
@@ -15,26 +17,61 @@ import { startWith, map } from 'rxjs/operators';
 
 export class AdminRegisterStudentUserComponent implements OnInit {
 
-  constructor() { }
+  intakeNum: number;
+  email: string;
+  username: string;
 
-
-
-  onLogin() { }
-
+  departments = []
+  token;
   selectedValue: string;
-  selectedCar: string;
 
-  departments: string[] = [
-    'JETS',
-    'Network',
-    'Cloud',
-    'AI'
-  ];
+  constructor(private departmentService: DepartmentService) {
+
+  }
+
+
+  public fetchDepartmentData(): void {
+    this.departmentService.fetchData().subscribe(
+      (data: any) => {
+        console.log(data)
+        this.departments = data;
+      },
+      (error: any) => {
+        console.log(error)
+      }
+    )
+  }
+
+  registerNewStudent() {
+    const data = {
+      username: this.username,
+      intakeNumber: this.intakeNum,
+      email: this.email,
+      departmentId: this.selectedValue["id"]
+    };
+
+    this.departmentService.postData(data).subscribe(
+      (response) => {
+        console.log('POST request successful', response);
+        // Handle the response from the server
+      },
+      (error) => {
+        console.error('Error making POST request', error);
+        // Handle the error
+      }
+    );
+    console.log(
+      this.intakeNum + " " + this.email + " " + this.username + " " + this.selectedValue["id"]
+    )
+  }
+
+
+
 
 
 
   ngOnInit() {
-
+    this.fetchDepartmentData()
   }
 
 }
