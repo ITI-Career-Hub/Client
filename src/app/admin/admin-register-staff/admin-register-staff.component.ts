@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from 'src/app/services/department.service';
+import { StaffService } from 'src/app/services/staff.service';
 
 @Component({
   selector: 'app-admin-register-staff',
@@ -13,7 +14,7 @@ export class AdminRegisterStaffComponent implements OnInit {
   selectedValue: string;
   departments = []
 
-  constructor(private departmentService: DepartmentService) {
+  constructor(private departmentService: DepartmentService, private staffService: StaffService) {
 
   }
 
@@ -21,7 +22,24 @@ export class AdminRegisterStaffComponent implements OnInit {
     this.fetchDepartmentData()
   }
 
-  registerNewStudent() { }
+  registerNewStaff() {
+    const data = {
+      email: this.email,
+      username: this.username,
+      departmentId: this.selectedValue["id"]
+    }
+    this.staffService.createStaff(data).subscribe(
+      (response) => {
+        console.log('valid token', response);
+        // Handle the response from the server
+      },
+      (error) => {
+        console.error('Error making POST request', error);
+        // Handle the error
+      }
+    );
+
+  }
 
   public fetchDepartmentData(): void {
     this.departmentService.fetchData().subscribe(

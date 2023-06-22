@@ -12,11 +12,8 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { LayoutComponent } from './layout/layout.component';
 import { TopNavComponent } from './layout/top-nav/top-nav.component';
 import { SideNavComponent } from './layout/side-nav/side-nav.component';
-import { StudentOwnRegisterComponent } from './student-own-register/student-own-register.component';
-import { AdminRegisterStaffComponent } from './admin-register-staff/admin-register-staff.component';
-import { AdminRegisterCompanyComponent } from './admin-register-company/admin-register-company.component';
-import { StaffOwnerRegisterComponent } from './staff-owner-register/staff-owner-register.component';
-import { CompanyOwnerRegisterComponent } from './company-owner-register/company-owner-register.component';
+import { MatChipsModule } from '@angular/material/chips';
+
 
 @NgModule({
   imports: [
@@ -28,7 +25,10 @@ import { CompanyOwnerRegisterComponent } from './company-owner-register/company-
     MatIconModule,
     MatInputModule,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    MatIconModule,
+    MatChipsModule,
+
   ],
   declarations: [LayoutComponent, TopNavComponent, SideNavComponent]
 })

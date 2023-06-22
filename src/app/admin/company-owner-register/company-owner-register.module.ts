@@ -8,6 +8,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CompanyOwnerUserRoutingModule } from './company-owner-register-routing.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 
@@ -21,7 +23,9 @@ import { CompanyOwnerUserRoutingModule } from './company-owner-register-routing.
     MatCheckboxModule,
     MatButtonModule,
     CompanyOwnerUserRoutingModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule,
+    MatIconModule,
   ]
 })
 export class CompanyOwnerRegisterModule { }

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { ActivatedRoute } from '@angular/router';
 import { Country } from 'country-list';
 import * as countryList from 'country-list';
 import { CompanyService } from 'src/app/services/company.service';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+
 
 @Component({
   selector: 'app-company-owner-register',
@@ -63,9 +66,7 @@ export class CompanyOwnerRegisterComponent implements OnInit {
       password: this.password,
       companyName: this.companyName,
       description: this.description,
-      // "technologies": [
-      //   "string"
-      // ],
+      technologies: this.technologies,
       country: this.selectedCountry,
       state: this.state,
       city: this.city,
@@ -82,6 +83,31 @@ export class CompanyOwnerRegisterComponent implements OnInit {
         // Handle the error
       }
     );
+  }
+
+
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  technologies: string[] = [];
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      this.technologies.push(value);
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  remove(technology: string): void {
+    const index = this.technologies.indexOf(technology);
+
+    if (index >= 0) {
+      this.technologies.splice(index, 1);
+    }
   }
 }
 
