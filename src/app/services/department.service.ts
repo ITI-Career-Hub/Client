@@ -17,7 +17,7 @@ export class DepartmentService {
 
 
   postData(data: any): Observable<any> {
-    const url = '${api}/register/student';
+    const url = `${api}/register/student`;
     return this.http.post(url, data);
   }
 
