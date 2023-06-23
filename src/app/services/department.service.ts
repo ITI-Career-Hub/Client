@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { api } from '../../../constants';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class DepartmentService {
   constructor(private http: HttpClient) { }
   public fetchData(): Observable<any> {
-    const apiUrl = '${api}/department'; // Replace with your API endpoint
+    const apiUrl = `${api}/department`; // Replace with your API endpoint
 
     return this.http.get<any>(apiUrl);
   }

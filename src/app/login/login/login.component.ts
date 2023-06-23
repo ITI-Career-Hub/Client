@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { authAPI, frontAPI } from '../../../../constants';
 import jwtDecode from 'jwt-decode';
 
 
@@ -11,10 +12,10 @@ import jwtDecode from 'jwt-decode';
 })
 export class LoginComponent implements OnInit {
 
-  private authorizationEndpoint = 'http://localhost:8888/oauth2/authorize';
-  private tokenEndpoint = 'http://localhost:8888/oauth2/token';
+  private authorizationEndpoint = `${authAPI}/oauth2/authorize`;
+  private tokenEndpoint = `${authAPI}/oauth2/token`;
   private clientId = 'client';
-  private redirectUri = 'http://localhost:4200/login';
+  private redirectUri = `${frontAPI}/login`;
   // private redirectUri = 'http://localhost:8888/authorized';
 
 
