@@ -107,6 +107,16 @@
           "options": {
             "browserTarget": "angular-material-admin:build"
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "angular-material-admin:build:production",
+            "firebaseProject": "careethub",
+            "firebaseHostingSite": "careethub"
+          }
         }
       }
     }
