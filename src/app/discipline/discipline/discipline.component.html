@@ -12,14 +12,16 @@
 
                     <div>
                         <label for="Discipline">Choose Discipline</label>
-                        <select class="form-select">
-                            <option value="">Software Devlopment</option>
+                        <select class="form-select" (change)="handelTracks($event.target.value)" >
+                            <option>Choose Discipline</option>
+                            <option value="{{item.key}}" *ngFor="let item of discipines">{{item.value}}</option>
                         </select>
 
                         <br><br>
                         <label for="discpline">Choose track</label>
-                        <select class="form-select">
-                            <option value="">Enterprise Web Application Development java</option>
+                        <select class="form-select" #userSelect (change)="handelTrackName(userSelect)">
+                            <option value="">Choose track</option>
+                            <option value="{{item.id}}" *ngFor="let item of tracks">{{item.departmentName}}</option>
                         </select>
 
                         <br>
@@ -40,36 +42,20 @@
         <ng-template matStepLabel>Shortlist Student</ng-template>
 
         <div class="row">
-            <div class="col-4" style="height: 100%;border: 1px solid gainsboro; border-radius: 10px;">
-                <p class="fs-2">Track Name</p>
-                <div
-                    style="display: flex;justify-content: space-between;border: 1px solid gainsboro; border-radius: 10px;padding: 10px;margin: 10px;">
+            <div class="col-4" style="height: 100%;border: 1px solid gainsboro; border-radius: 10px;" >
+                <p class="fs-2">{{ trackName }}</p>
+                <div 
+                *ngFor="let student of students"
+                (click)="chooseStudent(student)"
+                style="display: flex;justify-content: space-between;border: 1px solid gainsboro; border-radius: 10px;padding: 10px;margin: 10px;">
                     <div>
-                        bla bla
+                       {{student.firstName + ' ' + student.lastName}}
                     </div>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" name="" id="">
                     </div>
                 </div>
-                <div (click)="bla()"
-                    style="display: flex;justify-content: space-between;border: 1px solid gainsboro; border-radius: 10px;padding: 10px;margin: 10px;">
-                    <div>
-                        bla bla
-                    </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" name="" id="">
-                    </div>
-                </div>
-                <div
-                    style="display: flex;justify-content: space-between;border: 1px solid gainsboro; border-radius: 10px;padding: 10px;margin: 10px;">
-                    <div>
-                        bla bla
-                    </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" name="" id="">
-                    </div>
-                </div>
-
+                
 
                 <button class="btn btn-primary" style="margin: 10px;">Next</button>
 
