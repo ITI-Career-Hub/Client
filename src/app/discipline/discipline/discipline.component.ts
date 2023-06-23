@@ -13,4 +13,8 @@ export class DisciplineComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  bla(){
+    console.log("dfsf");
+  }
+
 }

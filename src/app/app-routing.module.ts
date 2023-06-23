@@ -30,8 +30,6 @@ const routes: Routes = [
       import('./admin/student-own-register/studnet-own-register.module').then((m) => m.StudnetOwnRegisterModule),
   }, 
   {
-  },
-  {
     path: 'staff/register',
     loadChildren: () =>
       import('./admin/admin-register-staff/admin-register-staff.module').then((m) => m.AdminRegisterStaffModule),
