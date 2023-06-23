@@ -19,9 +19,6 @@ export class AdminRegisterStudentUserComponent implements OnInit {
 
   }
 
-
-
-
   intakeNum: number;
   email: string;
   username: string;
@@ -29,8 +26,6 @@ export class AdminRegisterStudentUserComponent implements OnInit {
   departments = []
   token;
   selectedValue: string;
-
-
 
 
   public fetchDepartmentData(): void {

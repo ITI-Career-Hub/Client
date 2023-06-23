@@ -23,7 +23,7 @@ export class CompanyService {
   }
 
   createCompany(data: any): Observable<any> {
-    const urlAPI = '${api}/register/company';
+    const urlAPI = `${api}/register/company`;
     return this.httpClient.post(urlAPI, data);
   }
 }

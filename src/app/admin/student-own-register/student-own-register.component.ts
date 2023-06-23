@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StudentService } from 'src/app/services/student.service';
-import { FormControl } from '@angular/forms';
 import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
-import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
 import { getDownloadURL } from '@firebase/storage';
 
 

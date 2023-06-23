@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ActivatedRoute } from '@angular/router';
 import { Country } from 'country-list';
 import * as countryList from 'country-list';
 import { CompanyService } from 'src/app/services/company.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
+import { getDownloadURL } from '@firebase/storage';
 
 
 @Component({
@@ -25,12 +27,14 @@ export class CompanyOwnerRegisterComponent implements OnInit {
   city: string;
   street: string;
   state: string;
+  showSpinner: boolean = false;
+
 
   selectedCountry: string;
   countries: { name: string, flag: string }[];
 
 
-  constructor(private route: ActivatedRoute, private companyService: CompanyService) {
+  constructor(private route: ActivatedRoute, private companyService: CompanyService, private readonly storage: Storage) {
 
     this.countries = countryList.getData().map((country: Country) => {
       return {
@@ -61,7 +65,12 @@ export class CompanyOwnerRegisterComponent implements OnInit {
     );
   }
 
-  registerCompany() {
+  async registerCompany(image: any) {
+
+    this.showSpinner = true;
+
+    const imageLink = await this.uploadFile(image);
+    console.log(imageLink)
     const data = {
       password: this.password,
       companyName: this.companyName,
@@ -70,7 +79,8 @@ export class CompanyOwnerRegisterComponent implements OnInit {
       country: this.selectedCountry,
       state: this.state,
       city: this.city,
-      street: this.street
+      street: this.street,
+      pictureUrl: imageLink
     }
 
     this.companyService.registerFullCompanyInfo(this.token, data).subscribe(
@@ -83,6 +93,9 @@ export class CompanyOwnerRegisterComponent implements OnInit {
         // Handle the error
       }
     );
+
+    this.showSpinner = false;
+
   }
 
 
@@ -109,5 +122,79 @@ export class CompanyOwnerRegisterComponent implements OnInit {
       this.technologies.splice(index, 1);
     }
   }
+
+
+  async uploadFile(input: HTMLInputElement): Promise<string | null> {
+    if (!input.files) return null;
+
+    const files: FileList = input.files;
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files.item(i);
+      if (file) {
+        const storageRef = ref(this.storage, file.name);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        await new Promise<void>((resolve, reject) => {
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              const progress = Math.round(
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+              );
+              // this.setProgresspercent(progress);
+            },
+            (error) => {
+              reject(error);
+            },
+            () => {
+              getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                console.log(downloadURL);
+                resolve();
+              });
+            }
+          );
+        });
+
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+        return downloadURL;
+      }
+    }
+
+    return null;
+  }
+
+
+  avatarImageUrl: string = 'assets/default-avatar.png'; // Default avatar image URL
+
+  handleImageError() {
+    this.avatarImageUrl = 'assets/default-avatar.png'; // Handle image loading errors by setting a default avatar image
+  }
+
+
+  progressPercent: number = 0;
+
+  image: string | null = null;
+  @ViewChild('imageInput') imageInput: any;
+
+  openImagePicker() {
+    this.imageInput.nativeElement.click();
+  }
+
+  handleImageChange(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e: any) => {
+      this.image = e.target.result;
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+
+  }
+
+
 }
 
