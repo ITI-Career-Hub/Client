@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Country } from 'country-list';
 import * as countryList from 'country-list';
 import { CompanyService } from 'src/app/services/company.service';
@@ -34,7 +34,7 @@ export class CompanyOwnerRegisterComponent implements OnInit {
   countries: { name: string, flag: string }[];
 
 
-  constructor(private route: ActivatedRoute, private companyService: CompanyService, private readonly storage: Storage) {
+  constructor(private router: Router, private route: ActivatedRoute, private companyService: CompanyService, private readonly storage: Storage) {
 
     this.countries = countryList.getData().map((country: Country) => {
       return {
@@ -61,6 +61,7 @@ export class CompanyOwnerRegisterComponent implements OnInit {
       (error) => {
         console.error('Error making POST request', error);
         // Handle the error
+        this.router.navigate(["/error"])
       }
     );
   }
@@ -89,6 +90,7 @@ export class CompanyOwnerRegisterComponent implements OnInit {
         // Handle the response from the server
       },
       (error) => {
+        this.route
         console.error('Error making POST request', error);
         // Handle the error
       }

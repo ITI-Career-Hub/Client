@@ -1,59 +1,23 @@
-$gray: #f0f0f0;
-$gray2: #e0e0e0;
-$gray3: #d0d0d0;
-$white: #ffffff;
-:host {
-  background: $gray;
-  display: block;
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-.dashboard {
-  .title {
-    font-size: 2rem;
-    margin: 0;
-    margin-bottom: 1rem;
-  }
-
-  .main-content {
-    border: 1px solid green;
-    background: $white;
-    min-height: 300px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .secondary-content {
-    border: 1px solid red;
-    background: $white;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    min-height: 300px;
-  }
-
-  .box-1 {
-    border: 1px solid blue;
-    height: 150px;
-    background: $white;
-    vertical-align: middle;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  .box-2 {
-    border: 1px solid blue;
-    height: 150px;
-    background: $gray2;
-    font-size: 3rem;
-    color: $gray3;
-    vertical-align: middle;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
+.error-title {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #ff0000;
 }
 
-@media screen and (min-height: 700px) {
-  :host {
-    height: 100vh;
-  }
+.error-message {
+  font-size: 16px;
+  color: #555555;
+  text-align: center;
 }
 
-
+div {
+  background-color: aliceblue;
+}
