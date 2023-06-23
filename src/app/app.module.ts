@@ -27,9 +27,12 @@ const firebaseConfig = {
 // Initialize Firebase
 // const app = initializeApp(firebaseConfig);
 
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ExamplePdfViewerComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -40,7 +43,10 @@ const firebaseConfig = {
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideStorage(() => getStorage()),
-    AvatarModule
+    AvatarModule,
+    PdfViewerModule,
+    NgxExtendedPdfViewerModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

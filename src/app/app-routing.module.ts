@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/auth.guard';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { ProfileComponent } from './profile/profile/profile.component';
+import { DisciplineComponent } from './discipline/discipline/discipline.component';
+import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginModule),
   },
+
   {
     path: 'register',
     loadChildren: () =>
@@ -26,7 +29,7 @@ const routes: Routes = [
     // path: 'signup',
     loadChildren: () =>
       import('./admin/student-own-register/studnet-own-register.module').then((m) => m.StudnetOwnRegisterModule),
-  },
+  }, 
   {
     path: 'staff/register',
     loadChildren: () =>
@@ -53,6 +56,20 @@ const routes: Routes = [
     loadChildren: () =>
       import('./profile/profile.module').then((m) => m.ProfileModule),
 
+  },
+  {
+    path: 'test',
+    component: ExamplePdfViewerComponent,
+
+
+  },
+  
+  {
+
+    path: 'discipline',
+    component: DisciplineComponent,
+    loadChildren: () =>
+      import('./discipline/discipline.module').then((m) => m.DisciplineModule),
   },
   {
     path: '**',
