@@ -1,0 +1,84 @@
+<!-- "password": "string",
+  "companyName": "string",
+  "description": "string",
+  "technologies": [
+    "string"
+  ],
+  "country": "string",
+  "state": "string",
+  "city": "string",
+   -->
+<div class="login-page">
+    <div class="content px20">
+        <form class="login-form" #myForm="ngForm" (ngSubmit)="registerCompany()">
+            <div class="text-center">
+                <h2 class="app-name">Complete your profile</h2>
+            </div>
+            <div fxLayout="row">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput name="email" [(ngModel)]="email" placeholder="Email" disabled type="email"
+                            value="example@gmail.com">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input name="password" [(ngModel)]="password" matInput type="password" placeholder="Password">
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Technologies</mat-label>
+                        <mat-chip-list #chipList aria-label="Technologies selection">
+                            <mat-chip *ngFor="let technology of technologies" (removed)="remove(technology)">
+                                {{technology}}
+                                <button matChipRemove>
+                                    <mat-icon>cancel</mat-icon>
+                                </button>
+                            </mat-chip>
+                            <input placeholder="New Technology..." [matChipInputFor]="chipList"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                                (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100">
+                        <input matInput type="password" placeholder="Confirm password">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input name="companyName" [(ngModel)]="companyName" matInput placeholder="Company Name">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <textarea name="description" [(ngModel)]="description" matInput
+                            placeholder="Description"></textarea>
+                    </mat-form-field>
+                    <mat-form-field class="w-70">
+                        <label>Country</label>
+                        <mat-select [(ngModel)]="selectedCountry" name="country">
+                            <mat-option *ngFor="let country of countries" [value]="country.name">
+                                <img [src]="country.flag" [alt]="country.name" class="country-flag">
+                                {{ country.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <br />
+                    <mat-form-field class="w-0" style="padding: 40px;">
+                        <input matInput [(ngModel)]="state" name="state" placeholder="State">
+                    </mat-form-field>
+                    <mat-form-field class="w-20">
+                        <input matInput [(ngModel)]="city" name="city" placeholder="City">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <input matInput [(ngModel)]="street" name="street" placeholder="Street">
+                    </mat-form-field>
+
+                </div>
+            </div>
+
+            <div fxLayout="row">
+                <div fxFlexFill>
+                    <button type="submit" mat-raised-button color="primary" class="w-100">Save</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

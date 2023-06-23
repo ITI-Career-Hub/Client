@@ -21,7 +21,8 @@ import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-view
     CoreModule,
     SharedModule,
     PdfViewerModule,
-    NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

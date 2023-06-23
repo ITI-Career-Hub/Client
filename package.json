@@ -23,9 +23,13 @@
     "@angular/router": "~13.1.1",
     "bootstrap": "^5.3.0",
     "chart.js": "^3.7.0",
+    "country-flag-icons": "^1.5.7",
+    "country-flags-svg": "^1.1.8",
+    "country-list": "^2.3.0",
     "ng2-charts": "^3.0.6",
     "ng2-pdf-viewer": "^9.1.5",
     "ngx-extended-pdf-viewer": "^17.2.0",
+    "ngx-country-select": "^2.0.6",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
@@ -35,7 +39,7 @@
     "@angular/cli": "~13.1.2",
     "@angular/compiler-cli": "~13.1.1",
     "@angular/language-service": "~13.1.1",
-    "@types/node": "^12.11.1",
+    "@types/node": "^12.20.55",
     "typescript": "~4.5.4"
   }
 }

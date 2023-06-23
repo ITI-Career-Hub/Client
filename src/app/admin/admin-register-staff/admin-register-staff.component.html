@@ -1,10 +1,13 @@
 <div class="login-page">
     <div class="content px20">
-        <form class="login-form" #myForm="ngForm" (ngSubmit)="registerNewStudent()">
+        <form class="login-form" #myForm="ngForm" (ngSubmit)="registerNewStaff()">
             <div class="text-center">
-                <h2 class="app-name">Register New Student</h2>
+                <h2 class="app-name">Register New Staff</h2>
             </div>
             <div fxLayout="row">
+                <!-- "username": "string",
+                "email": "string",
+                "departmentId": 0 -->
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
                         <input matInput placeholder="Username" name="username" [(ngModel)]="username">
@@ -20,16 +23,12 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <mat-form-field class="w-100">
-                        <input matInput type="number" placeholder="Intake number" min="1" value="43" name="intakeNum"
-                            [(ngModel)]="intakeNum">
-                    </mat-form-field>
                 </div>
             </div>
 
             <div fxLayout="row">
                 <div fxFlexFill>
-                    <button type="submit" mat-raised-button color="primary" class="w-100">Create New Student</button>
+                    <button type="submit" mat-raised-button color="primary" class="w-100">Create New Staff</button>
                 </div>
             </div>
 

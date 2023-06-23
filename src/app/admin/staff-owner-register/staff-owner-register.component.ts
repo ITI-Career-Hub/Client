@@ -1,33 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { StudentService } from 'src/app/services/student.service';
+import { StaffService } from 'src/app/services/staff.service';
+
+
+
 
 @Component({
-  selector: 'app-student-own-register',
-  templateUrl: './student-own-register.component.html',
-  styleUrls: ['./student-own-register.component.scss']
+  selector: 'app-staff-owner-register',
+  templateUrl: './staff-owner-register.component.html',
+  styleUrls: ['./staff-owner-register.component.scss']
 })
-export class StudentOwnRegisterComponent implements OnInit {
-
-  constructor(private route: ActivatedRoute, private studentService: StudentService) { }
-
+export class StaffOwnerRegisterComponent implements OnInit {
   token: string;
   email: string;
   password: string;
   firstName: string;
   lastName: string;
-  college: string;
-  phoneNumber: string;
-  graduationYear: number;
 
-  ngOnInit() {
+  constructor(private route: ActivatedRoute, private staffService: StaffService) { }
+
+  ngOnInit(): void {
     this.token = this.route.snapshot.paramMap.get('token');
     console.log('Token:', this.token);
-    this.registerNewStudent();
+    this.validateToken()
   }
 
-  registerNewStudent() {
-    this.studentService.validateToken(this.token).subscribe(
+
+  validateToken() {
+    this.staffService.validateToken(this.token).subscribe(
       (response) => {
         this.email = response["email"]
         console.log('valid token', response);
@@ -40,21 +40,15 @@ export class StudentOwnRegisterComponent implements OnInit {
     );
   }
 
-
-  onLogin() { }
-
-  createUser() {
+  createStaff() {
     const data = {
       email: this.email,
       password: this.password,
       firstName: this.firstName,
-      lastName: this.lastName,
-      college: this.college,
-      phoneNumber: this.phoneNumber,
-      graduationYear: this.graduationYear
+      lastName: this.lastName
     };
 
-    this.studentService.createStudent(data, this.token).subscribe(
+    this.staffService.registerFullStaffInfo(this.token, data).subscribe(
       (response) => {
         console.log('valid token', response);
         // Handle the response from the server
@@ -67,3 +61,5 @@ export class StudentOwnRegisterComponent implements OnInit {
   }
 
 }
+
+
