@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { api } from '../../../constants';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,19 +11,19 @@ export class CompanyService {
   constructor(private httpClient: HttpClient) { }
 
   public validateToken(token: string): Observable<any> {
-    const apiUrl = `http://localhost:9090/company/validate?token=${token}`;
+    const apiUrl = `${api}/company/validate?token=${token}`;
 
     return this.httpClient.post<any>(apiUrl, token);
   }
 
 
   registerFullCompanyInfo(token: string, data: any): Observable<any> {
-    const urlAPI = `http://localhost:9090/company/register?token=${token}`;
+    const urlAPI = `${api}/company/register?token=${token}`;
     return this.httpClient.post(urlAPI, data);
   }
 
   createCompany(data: any): Observable<any> {
-    const urlAPI = 'http://localhost:9090/register/company';
+    const urlAPI = '${api}/register/company';
     return this.httpClient.post(urlAPI, data);
   }
 }

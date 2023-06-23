@@ -8,14 +8,14 @@ import { Observable } from 'rxjs/internal/Observable';
 export class DepartmentService {
   constructor(private http: HttpClient) { }
   public fetchData(): Observable<any> {
-    const apiUrl = 'http://localhost:9090/department'; // Replace with your API endpoint
+    const apiUrl = '${api}/department'; // Replace with your API endpoint
 
     return this.http.get<any>(apiUrl);
   }
 
 
   postData(data: any): Observable<any> {
-    const url = 'http://localhost:9090/register/student';
+    const url = '${api}/register/student';
     return this.http.post(url, data);
   }
 

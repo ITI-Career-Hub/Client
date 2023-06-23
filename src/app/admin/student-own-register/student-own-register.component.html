@@ -1,11 +1,25 @@
 <div class="login-page">
     <div class="content px20">
-        <form class="login-form" #myForm="ngForm" (ngSubmit)="createUser()">
+        <form class="login-form" #myForm="ngForm" (ngSubmit)="createUser(cv, imageInput)">
+            <br>
+            <br>
             <div class="text-center">
                 <h2 class="app-name">Complete your profile</h2>
             </div>
             <div fxLayout="row">
                 <div fxFlexFill>
+
+
+                    <div class="avatar" (click)="openImagePicker()">
+                        <img *ngIf="image" [src]="image" alt="Avatar" class="avatar-image" />
+                        <div class="avatar-placeholder" *ngIf="!image">
+                            <span class="avatar-placeholder-text">Choose Image</span>
+                        </div>
+                        <input type="file" accept="image/*" style="display: none" (change)="handleImageChange($event)"
+                            #imageInput />
+                    </div>
+
+
                     <mat-form-field class="w-100">
                         <input matInput name="email" [(ngModel)]="email" placeholder="Email" disabled type="email"
                             value="example@gmail.com">
@@ -33,6 +47,18 @@
                         <input matInput type="number" name="graduationYear" [(ngModel)]="graduationYear"
                             placeholder="Graduation Year" value="2022">
                     </mat-form-field>
+                    <div class="file-upload">
+                        <input id="fileUpload" type="file" #cv (change)="handleFileChange($event)">
+                        <label for="fileUpload">
+                            <i class="fas fa-cloud-upload-alt"></i> {{ selectedFileName || 'Choose a File' }}
+                        </label>
+                    </div>
+
+
+
+                    <div *ngIf="showSpinner" class="spinner-container">
+                        <mat-spinner></mat-spinner>
+                    </div>
                 </div>
             </div>
 

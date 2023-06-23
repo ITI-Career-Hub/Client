@@ -8,6 +8,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { AdminRegisterStudentUserRoutingModule } from './admin-register-student-routing.module';
 import { MatSelectModule } from '@angular/material/select';
+import { AvatarModule } from 'primeng/avatar';
 
 
 
@@ -21,7 +22,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatCheckboxModule,
     MatButtonModule,
     AdminRegisterStudentUserRoutingModule,
-    MatSelectModule
+    MatSelectModule,
+    AvatarModule
   ]
 })
 export class AdminRegisterStudentUserModule { }

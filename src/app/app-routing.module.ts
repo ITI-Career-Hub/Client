@@ -23,6 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'signup/:token',
+    // path: 'signup',
     loadChildren: () =>
       import('./admin/student-own-register/studnet-own-register.module').then((m) => m.StudnetOwnRegisterModule),
   },
@@ -30,6 +31,7 @@ const routes: Routes = [
     path: 'staff/register',
     loadChildren: () =>
       import('./admin/admin-register-staff/admin-register-staff.module').then((m) => m.AdminRegisterStaffModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'staff/signup/:token',
