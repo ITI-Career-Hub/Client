@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
+
 import { DepartmentService } from 'src/app/services/department.service';
 
 
@@ -17,6 +14,11 @@ import { DepartmentService } from 'src/app/services/department.service';
 
 export class AdminRegisterStudentUserComponent implements OnInit {
 
+
+  constructor(private departmentService: DepartmentService) {
+
+  }
+
   intakeNum: number;
   email: string;
   username: string;
@@ -24,10 +26,6 @@ export class AdminRegisterStudentUserComponent implements OnInit {
   departments = []
   token;
   selectedValue: string;
-
-  constructor(private departmentService: DepartmentService) {
-
-  }
 
 
   public fetchDepartmentData(): void {

@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { CompanyOwnerUserRoutingModule } from './company-owner-register-routing.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -26,6 +27,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatSelectModule,
     MatChipsModule,
     MatIconModule,
+    MatProgressSpinnerModule
   ]
 })
 export class CompanyOwnerRegisterModule { }

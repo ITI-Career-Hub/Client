@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -24,7 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     StaffOwnerRegisterRoutingModule,
     MatSelectModule,
-
+    MatProgressSpinnerModule
   ]
 })
 export class StaffOwnerRegisterModule { }

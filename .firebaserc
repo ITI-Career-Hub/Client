@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "careethub": {
+      "hosting": {
+        "angular-material-admin": [
+          "careethub"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "careethub"
+  }
+}

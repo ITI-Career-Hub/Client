@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { StudentOwnRegisterComponent } from './student-own-register.component';
 import { StudnetOwnRegisterRoutingModule } from './student-own-register-routing.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -21,7 +22,8 @@ import { StudnetOwnRegisterRoutingModule } from './student-own-register-routing.
     MatCheckboxModule,
     MatButtonModule,
     MatSelectModule,
-    StudnetOwnRegisterRoutingModule
+    StudnetOwnRegisterRoutingModule,
+    MatProgressSpinnerModule
   ]
 })
 export class StudnetOwnRegisterModule { }
