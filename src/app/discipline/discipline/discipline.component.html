@@ -1,7 +1,9 @@
-<mat-stepper linear #stepper style="height: 100%;">
+<form (submit)="save()">
 
-    <!-- #docregion editable -->
-    <mat-step editable="false" style="height: 100%;" editable="true">
+    <mat-stepper linear #stepper style="height: 100%;">
+        
+        <!-- #docregion editable -->
+        <mat-step editable="false" style="height: 100%;" editable="true">
         <!-- #enddocregion editable -->
         <ng-template matStepLabel>Choose Track</ng-template>
         <div class="w-75 m-auto row">
@@ -9,17 +11,17 @@
                 <div>
                     <p class="text-secondary">NEW</p>
                     <p class="fs-2">Schedule New Track Interview</p>
-
+                    
                     <div>
                         <label for="Discipline">Choose Discipline</label>
-                        <select class="form-select" (change)="handelTracks($event.target.value)" >
+                        <select class="form-select" name="discplineName" (change)="handelTracks($event.target.value)" [(ngModel)]="formData.discplineName" >
                             <option>Choose Discipline</option>
                             <option value="{{item.key}}" *ngFor="let item of discipines">{{item.value}}</option>
                         </select>
 
                         <br><br>
                         <label for="discpline">Choose track</label>
-                        <select class="form-select" #userSelect (change)="handelTrackName(userSelect)">
+                        <select class="form-select" name="trackName" #userSelect (change)="handelTrackName(userSelect)" [(ngModel)]="formData.trackid">
                             <option value="">Choose track</option>
                             <option value="{{item.id}}" *ngFor="let item of tracks">{{item.departmentName}}</option>
                         </select>
@@ -52,7 +54,7 @@
                        {{student.firstName + ' ' + student.lastName}}
                     </div>
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" name="" id="">
+                        <input class="form-check-input" [id]="student.id" name="selectedStudents" type="checkbox" [value]="student.id"  (change)="updateSelectedInterests($event.target.checked, student.id)">
                     </div>
                 </div>
                 
@@ -70,31 +72,47 @@
     </mat-step>
     <mat-step editable="true">
         <ng-template matStepLabel>Schedual Interview</ng-template>
-
+        
         <div class="mb-3">
-            <label for="type" class="form-label">Interview Type</label>
-            <input type="text" class="form-control" id="type" placeholder="Interview Type">
-          </div>
+            <label for="type"  class="form-label">Interview Type</label>
+            <!-- <input type="text" name="interviewType" class="form-control" id="type" placeholder="Interview Type" [(ngModel)]="formData.interviewType"> -->
+            <select class="form-select" name="interviewType" [(ngModel)]="formData.interviewType" >
+                <option value="HR">HR</option>
+                <option value="TEQNIQAL">teqniqal</option>
+            </select>
+        </div>
 
-          <div class="mb-3">
-            <label for="Interviewer" class="form-label">Interviewer</label>
-            <input type="text" class="form-control" id="Interviewer" placeholder="Interviewer">
-          </div>
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Interviewers</mat-label>
+            <mat-chip-list #chipList aria-label="interviewers selection">
+                <mat-chip *ngFor="let technology of interviewers" (removed)="remove(technology)">
+                    {{technology}}
+                    <button matChipRemove>
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip>
+                <input placeholder="Interviewers..." [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+        </mat-form-field>
+
 
 
           <div class="mb-3">
             <label for="date" class="form-label">Date</label>
-            <input type="date" class="form-control" id="date" >
+            <input type="date" class="form-control" id="date" name="date"  [(ngModel)]="formData.date" >
           </div>
 
           <div class="mb-3">
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Interview Notes"></textarea>
-          </div>
+              <textarea class="form-control" id="exampleFormControlTextarea1"  name="notes"  [(ngModel)]="formData.notes" rows="3" placeholder="Interview Notes"></textarea>
+            </div>
         
-          <button class="btn btn-primary">save</button>
+          <button class="btn btn-primary" type="submit">save</button>
         <!-- <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
         </div> -->
     </mat-step>
 </mat-stepper>
+</form>

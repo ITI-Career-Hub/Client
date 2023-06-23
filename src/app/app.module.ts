@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [AppComponent, ExamplePdfViewerComponent],
@@ -22,7 +23,8 @@ import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-view
     SharedModule,
     PdfViewerModule,
     NgxExtendedPdfViewerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
