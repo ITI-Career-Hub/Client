@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/app/services/student.service';
 import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { getDownloadURL } from '@firebase/storage';
@@ -14,7 +14,7 @@ export class StudentOwnRegisterComponent implements OnInit {
 
 
 
-  constructor(private route: ActivatedRoute, private studentService: StudentService, private readonly storage: Storage) { }
+  constructor(private router: Router, private route: ActivatedRoute, private studentService: StudentService, private readonly storage: Storage) { }
 
   token: string;
   email: string;
@@ -53,6 +53,7 @@ export class StudentOwnRegisterComponent implements OnInit {
       (error) => {
         console.error('Error making POST request', error);
         // Handle the error
+        this.router.navigate(["/error"])
       }
     );
   }
@@ -88,6 +89,7 @@ export class StudentOwnRegisterComponent implements OnInit {
       (error) => {
         console.error('Error making POST request', error);
         // Handle the error
+        this.router.navigate(["/error"])
       }
     );
 

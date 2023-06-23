@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StaffService } from 'src/app/services/staff.service';
 import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { getDownloadURL } from '@firebase/storage';
@@ -22,7 +22,7 @@ export class StaffOwnerRegisterComponent implements OnInit {
   showSpinner: boolean = false;
 
 
-  constructor(private route: ActivatedRoute, private staffService: StaffService, private readonly storage: Storage) { }
+  constructor(private router: Router, private route: ActivatedRoute, private staffService: StaffService, private readonly storage: Storage) { }
 
   ngOnInit(): void {
     this.token = this.route.snapshot.paramMap.get('token');
@@ -41,6 +41,7 @@ export class StaffOwnerRegisterComponent implements OnInit {
       (error) => {
         console.error('Error making POST request', error);
         // Handle the error
+        this.router.navigate(["/error"])
       }
     );
   }
@@ -66,6 +67,7 @@ export class StaffOwnerRegisterComponent implements OnInit {
       (error) => {
         console.error('Error making POST request', error);
         // Handle the error
+        this.router.navigate(["/error"])
       }
     );
     this.showSpinner = false;
