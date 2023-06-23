@@ -15,14 +15,12 @@
                     <div>
                         <label for="Discipline">Choose Discipline</label>
                         <select class="form-select" name="discplineName" (change)="handelTracks($event.target.value)" [(ngModel)]="formData.discplineName" >
-                            <option>Choose Discipline</option>
                             <option value="{{item.key}}" *ngFor="let item of discipines">{{item.value}}</option>
                         </select>
 
                         <br><br>
                         <label for="discpline">Choose track</label>
                         <select class="form-select" name="trackName" #userSelect (change)="handelTrackName(userSelect)" [(ngModel)]="formData.trackid">
-                            <option value="">Choose track</option>
                             <option value="{{item.id}}" *ngFor="let item of tracks">{{item.departmentName}}</option>
                         </select>
 
