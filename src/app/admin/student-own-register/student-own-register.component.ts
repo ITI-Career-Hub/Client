@@ -30,6 +30,7 @@ export class StudentOwnRegisterComponent implements OnInit {
   showSpinner: boolean = false;
 
 
+
   ngOnInit() {
     this.token = this.route.snapshot.paramMap.get('token');
     console.log('Token:', this.token);
@@ -77,7 +78,9 @@ export class StudentOwnRegisterComponent implements OnInit {
       lastName: this.lastName,
       college: this.college,
       phoneNumber: this.phoneNumber,
-      graduationYear: this.graduationYear
+      graduationYear: this.graduationYear,
+      resumeUrl: cvLink,
+      pictureUrl: imgLink,
     };
 
     this.studentService.createStudent(data, this.token).subscribe(
