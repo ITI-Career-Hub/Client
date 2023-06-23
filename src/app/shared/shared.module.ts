@@ -14,7 +14,8 @@ import { RouterTab } from './router-tab/router-tab.directive';
     FlexLayoutModule,
     PageNotFoundComponent,
     RouterTabs,
-    RouterTab
+    RouterTab,
+    
   ]
 })
 export class SharedModule {}
