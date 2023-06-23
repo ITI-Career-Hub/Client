@@ -21,4 +21,12 @@ export class StudentService {
     return this.http.post<any>(apiUrl, data);
   }
 
+
+  public studentData(username: any, token: string): Observable<any> {
+    const apiUrl = `${api}/student/uasername/${username}`;
+
+    return this.http.get<any>(apiUrl);
+  }
+
+
 }

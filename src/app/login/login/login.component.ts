@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { authAPI, frontAPI } from '../../../../constants';
 import jwtDecode from 'jwt-decode';
+import { StudentService } from 'src/app/services/student.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   // private redirectUri = 'http://localhost:8888/authorized';
 
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private navRoute: Router) { }
+  constructor(private studentService: StudentService, private http: HttpClient, private route: ActivatedRoute, private navRoute: Router) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -81,6 +82,17 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('isLoggedin', "true")
     const payload = jwtDecode(accessToken);
     localStorage.setItem('role', payload["roles"])
+    console.log(payload)
+    if (true) {
+      this.studentService.studentData(payload["sub"], accessToken).subscribe(response => {
+        localStorage.setItem('userInfo', JSON.stringify(response))
+      },
+        error => {
+          console.error('Error exchanging authorization code for access token:', error);
+        }
+      );
+    }
+
   }
 
 
