@@ -7,10 +7,10 @@ import { CompanyAttendaceService } from 'src/app/services/companyAttendace.servi
   styleUrls: ['./company-attendance.component.scss']
 })
 export class CompanyAttendanceComponent implements OnInit {
-  src = 'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf';
 
   waitingStudents = [];
   doneStudents = [];
+  src = '';
 
   constructor(private companyAttendaceService: CompanyAttendaceService) { }
 
@@ -24,6 +24,9 @@ export class CompanyAttendanceComponent implements OnInit {
             this.doneStudents.push(e);
           }
         });
+
+        this.src = this.waitingStudents[0] ? this.waitingStudents[0].studentResumeUrl : 'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf';
+
 
         console.log(this.waitingStudents);
         console.log(this.doneStudents);

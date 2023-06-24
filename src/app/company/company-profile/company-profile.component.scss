@@ -1,0 +1,186 @@
+.tab-label {
+    display: flex;
+    align-items: center;
+}
+
+.tab-label span {
+    margin-right: 30px;
+}
+
+.event-count {
+    background-color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.tab-group {
+    // background-color: #180d0d;
+    width: 100%;
+    margin: 20px;
+    padding: 20px
+}
+
+
+.avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-placeholder-text {
+    color: #fff;
+    font-size: 14px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.container {
+    background-color: #F7F9FB;
+    width: 100%;
+
+}
+
+.layout-container {
+    display: flex;
+}
+
+.profile-info {
+    margin-top: 40px;
+    margin-left: 40px;
+    // width: 30%;
+    height: 329px;
+    width: 300px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Add shadow */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.tab-group-container {
+    flex-grow: 1;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Add shadow */
+    margin-left: 20px;
+}
+
+
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.avatar {
+    width: 100px;
+    /* Set initial width */
+    height: 100px;
+    /* Set initial height */
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.avatar img {
+    width: 100%;
+    height: auto;
+}
+
+.admin-name {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.info {
+    margin-top: 5px;
+    color: gray;
+}
+
+.edit-profile-button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Optional: Add hover styles for the button */
+.edit-profile-button:hover {
+    background-color: #e6e6e6;
+}
+
+.kk {
+    min-width: 270px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: flex-end;
+    margin: 16px;
+
+}
+
+.test {
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 26px 48px;
+    // gap: 37px;
+
+    // position: absolute;
+    width: 223px;
+    height: 259px;
+    // left: 34px;
+    // top: 136px;
+
+    background: #FFFFFF;
+    /* Other/Divider */
+
+    border: 1px solid #E6EAEE;
+    /* Drop Shadow Standard */
+
+    box-shadow: 0px 8px 24px rgba(21, 21, 22, 0.04);
+    border-radius: 10px;
+}

@@ -41,6 +41,8 @@ import { MatInputModule } from '@angular/material/input'
 import { MatChipsModule } from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
 import { AddCompanyModalComponent } from './add-track-modal/add-track-modal.component';
+import { MatTableModule } from '@angular/material/table';
+import { DataService } from './admin/tables/data.service';
 
 @NgModule({
   declarations: [AppComponent, ExamplePdfViewerComponent, AddModalComponent, AddCompanyModalComponent],
@@ -68,8 +70,10 @@ import { AddCompanyModalComponent } from './add-track-modal/add-track-modal.comp
     MatInputModule,
     MatChipsModule,
     FormsModule,
+    MatTableModule,
+    MatTabsModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

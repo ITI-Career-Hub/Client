@@ -26,6 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { TablesRoutingModule } from './tables/tables-routing.module';
+import { CompanyProfileModule } from './company-profile/company-profile.module';
 
 
 
@@ -52,7 +53,7 @@ import { TablesRoutingModule } from './tables/tables-routing.module';
     MatSortModule,
     MatInputModule,
     MatCheckboxModule,
-    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule
+    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule,CompanyProfileModule
   ],
   declarations: [LayoutComponent, TopNavComponent, SideNavComponent, AdminProfileComponent]
 })

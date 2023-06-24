@@ -7,6 +7,7 @@ import { DisciplineComponent } from './discipline/discipline/discipline.componen
 import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
 import { CompanyAttendanceComponent } from './company/company-attendance/company-attendance.component';
 import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
+import { CompanyProfileComponent } from './company/company-profile/company-profile.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,11 @@ const routes: Routes = [
     path: 'admin/profile',
     loadChildren: () =>
       import('./admin/admin-profile/admin-profile.module').then((m) => m.AdminProfileModule),
+  },
+  {
+    path: 'company',
+    loadChildren: () =>
+      import('./company/company.module').then((m) => m.CompanyModule),
   }
   , {
     path: 'profile',
