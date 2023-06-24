@@ -22,11 +22,11 @@
                 #imageInput />
         </div>
         <div class="admin-name">
-            ADMIN
+            {{name}}
         </div>
-        <div class="info">
+        <!-- <div class="info">
             Hello, I'm ITI ADMIN
-        </div>
+        </div> -->
         <button class="edit-profile-button">Edit Profile</button>
     </div>
 
@@ -37,7 +37,7 @@
             <ng-template mat-tab-label>
                 <div class="tab-label">
                     <span class="kk">EVENTS</span>
-                    <div class="event-count">3</div>
+                    <div class="event-count">{{eventCount}}</div>
                 </div>
             </ng-template>
             <div class="tab-content">
@@ -92,7 +92,7 @@
             <ng-template mat-tab-label>
                 <div class="tab-label">
                     <span class="kk">TRACKS</span>
-                    <div class="event-count">3</div>
+                    <div class="event-count">{{trackCount}}</div>
                 </div>
             </ng-template>
             <div class="tab-content">
@@ -115,7 +115,6 @@
                             </mat-checkbox>
                         </td>
                     </ng-container>
-                    trackColumns = ['track', 'discipline', 'supervisor', 'students', 'edit'];
 
                     <ng-container matColumnDef="track">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Track Name </th>
@@ -155,14 +154,14 @@
             <ng-template mat-tab-label>
                 <div class="tab-label">
                     <span class="kk">COMPANIES</span>
-                    <div class="event-count">3</div>
+                    <div class="event-count">{{companyCount}}</div>
                 </div>
             </ng-template>
             <div class="tab-content">
                 <div class="table-header">
-                    <button style="background-color: #2773FF; color: #F7F9FB;" mat-button
-                        (click)="openModal('event')">Add
+                    <button style="background-color: #2773FF; color: #F7F9FB;" mat-button (click)="redirectToLink()">Add
                         Company</button>
+
                 </div>
                 <table mat-table [dataSource]="companyData" matSort class="w-100">
 

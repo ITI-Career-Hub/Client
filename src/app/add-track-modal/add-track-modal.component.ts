@@ -1,12 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatDatepicker } from '@angular/material/datepicker';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EventService } from '../services/event.service';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { Component, OnInit } from '@angular/core';
 import { DisciplineService } from '../services/discipline.service';
 import { StaffService } from '../services/staff.service';
 import { TrackService } from '../services/track.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-track-modal',
@@ -24,11 +20,16 @@ export class AddCompanyModalComponent implements OnInit {
   discipline;
   staffId;
 
-  constructor(private trackService: TrackService, private disciplineService: DisciplineService, private staffService: StaffService) { }
+  constructor(private location: Location, private trackService: TrackService, private disciplineService: DisciplineService, private staffService: StaffService) { }
 
   ngOnInit(): void {
     this.getDiscipines();
     this.loadStaff();
+  }
+
+  refresh(): void {
+    this.location.go(this.location.path());
+    window.location.reload();
   }
 
   getDiscipines() {
@@ -78,18 +79,8 @@ export class AddCompanyModalComponent implements OnInit {
 
     this.trackService.createTrack(postData).subscribe((response) => {
       console.log(response)
+      this.refresh()
     }, (error) => { console.log(error) })
 
-    // Replace 'your_api_endpoint' with your actual API endpoint
-    // this.disciplineService.saveTrack('your_api_endpoint', postData).subscribe(
-    //   (response) => {
-    //     // Handle success response
-    //     console.log('Track saved successfully:', response);
-    //   },
-    //   (error) => {
-    //     // Handle error response
-    //     console.error('Error saving track:', error);
-    //   }
-    // );
   }
 }
