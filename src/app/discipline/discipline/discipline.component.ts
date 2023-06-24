@@ -83,6 +83,8 @@ export class DisciplineComponent implements OnInit {
       }
     }
 
+    console.log(this.selectedInterests)
+
   }
 
   addOnBlur = true;

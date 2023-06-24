@@ -1,115 +1,157 @@
-<form (submit)="save()">
-    <mat-stepper linear #stepper style="height: 100%;">
-        
-        <!-- #docregion editable -->
-        <mat-step editable="false" style="height: 100%;" editable="true">
-        <!-- #enddocregion editable -->
-        <ng-template matStepLabel>Choose Track</ng-template>
-        <div class="w-75 m-auto row">
-            <div class="col-8">
-                <div>
-                    <p class="text-secondary">NEW</p>
-                    <p class="fs-2">Schedule New Track Interview</p>
-                    
-                    <div>
-                        <label for="Discipline">Choose Discipline</label>
-                        <select class="form-select" name="discplineName" (change)="handelTracks($event.target.value)" [(ngModel)]="formData.discplineName" >
-                            <option value="{{item.key}}" *ngFor="let item of discipines">{{item.value}}</option>
-                        </select>
+<div style="margin: 50px 100px;">
 
-                        <br><br>
-                        <label for="discpline">Choose track</label>
-                        <select class="form-select" name="trackName" #userSelect (change)="handelTrackName(userSelect)" [(ngModel)]="formData.trackid">
-                            <option value="{{item.id}}" *ngFor="let item of tracks">{{item.departmentName}}</option>
-                        </select>
+    <div style="display: flex;align-items: center;box-sizing: border-box;">
+        <div>
+            <img src="assets/images/logo.png" width="39" height="60" alt="logo">
+        </div>
+        <div style="height: 50px;background-color: #8793A1;min-width: 2px;"></div>
+        <div
+            style="font-family: 'Open Sans';font-weight: 700;color: #C1272D;font-size: 18px;padding-top: 12px;padding-left: 5px;">
+            Career<br>Hub</div>
+    </div>
+</div>
 
-                        <br>
+<div style="margin: 50px 110px; ;">
+    <form (submit)="save()">
+        <mat-stepper linear #stepper style="height: 100%;border-radius: 15px">
+
+            <!-- #docregion editable -->
+            <mat-step editable="false" style="height: 100%;" editable="true">
+                <!-- #enddocregion editable -->
+                <ng-template matStepLabel>Choose Track</ng-template>
+                <div class="w-75 m-auto row">
+                    <div class="col-8">
+                        <div>
+                            <p class="text-secondary">NEW</p>
+                            <p class="fs-2">Schedule New Track Interview</p>
+
+                            <div>
+                                <label for="Discipline">Choose Discipline</label>
+                                <select class="form-select" name="discplineName"
+                                    (change)="handelTracks($event.target.value)" [(ngModel)]="formData.discplineName">
+                                    <option value="{{item.key}}" *ngFor="let item of discipines">{{item.value}}</option>
+                                </select>
+
+                                <br><br>
+                                <label for="discpline">Choose track</label>
+                                <select class="form-select" name="trackName" #userSelect
+                                    (change)="handelTrackName(userSelect)" [(ngModel)]="formData.trackid">
+                                    <option value="{{item.id}}" *ngFor="let item of tracks">{{item.departmentName}}
+                                    </option>
+                                </select>
+
+                                <br>
 
 
-                        <button class="btn btn-danger me-2">Cancel</button>
-                        <button class="btn btn-primary">Next</button>
+                                <!-- <button class="btn btn-danger me-2">Cancel</button>
+                                <button class="btn btn-primary">Next</button> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8"></div>
+                    <br>
+                    <hr>
+                </div>
+
+            </mat-step>
+            <mat-step editable="false" style="width: 100%;height: 100%;" editable="true">
+                <ng-template matStepLabel>Shortlist Student</ng-template>
+
+                <div class="row">
+                    <div class="col-4" style="height: 100%;border: 1px solid gainsboro; border-radius: 10px;">
+                        <p class="fs-2">{{ trackName }}</p>
+
+                        <!-- <div *ngFor="let student of students" (click)="chooseStudent(student)"
+                            style="display: flex;justify-content: space-between;border: 1px solid gainsboro; border-radius: 10px;padding: 10px;margin: 10px;">
+                            <div>
+                                {{student.firstName + ' ' + student.lastName}}
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" [id]="student.id" name="selectedStudents"
+                                    type="checkbox" [value]="student.id"
+                                    (change)="updateSelectedInterests($event.target.checked, student.id)">
+                            </div>
+                        </div> -->
+
+                        <div  style="display: flex; justify-content: space-between;align-items: center;width: 95%;" *ngFor="let item of students"  (click)="chooseStudent(item)">
+                            <div class="col" class="w-100">
+                                <div class="interview-box m-2" >
+                                    <!-- <div>
+                                        <img [src]="item.studentPictureUrl" class="user-image" width="44" height="44"
+                                            alt="user image">
+                                    </div> -->
+                                    <div class="m-2">
+                                        <p style="margin: -1px;">{{item.firstName + ' ' + item.lastName}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2 pe-3" style="width: 39px;height: 32px;">
+                                <div class="form-check form-switch">
+                                    <!-- <input class="form-check-input" name="selectedStudents" type="checkbox" (change)="updateUuserStatus(item)"> -->
+                                    <input class="form-check-input" [id]="item.id" name="selectedStudents"
+                                    type="checkbox" [value]="item.id"
+                                    (change)="updateSelectedInterests($event.target.checked, item.id)">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- <button class="btn btn-primary" style="margin: 10px;">Next</button> -->
+
+                    </div>
+                    <div class="col-8" style="height: 100%;">
+                        <ngx-extended-pdf-viewer [src]="src" height="100%">
+                        </ngx-extended-pdf-viewer>
+
                     </div>
                 </div>
-            </div>
-            <div class="col-8"></div>
-            <br>
-            <hr>
-        </div>
 
-    </mat-step>
-    <mat-step editable="false" style="width: 100%;height: 100%;" editable="true">
-        <ng-template matStepLabel>Shortlist Student</ng-template>
+            </mat-step>
+            <mat-step editable="true">
+                <ng-template matStepLabel>Schedual Interview</ng-template>
 
-        <div class="row">
-            <div class="col-4" style="height: 100%;border: 1px solid gainsboro; border-radius: 10px;" >
-                <p class="fs-2">{{ trackName }}</p>
-                <div 
-                *ngFor="let student of students"
-                (click)="chooseStudent(student)"
-                style="display: flex;justify-content: space-between;border: 1px solid gainsboro; border-radius: 10px;padding: 10px;margin: 10px;">
-                    <div>
-                       {{student.firstName + ' ' + student.lastName}}
-                    </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" [id]="student.id" name="selectedStudents" type="checkbox" [value]="student.id"  (change)="updateSelectedInterests($event.target.checked, student.id)">
-                    </div>
+                <div class="mb-3">
+                    <label for="type" class="form-label">Interview Type</label>
+                    <!-- <input type="text" name="interviewType" class="form-control" id="type" placeholder="Interview Type" [(ngModel)]="formData.interviewType"> -->
+                    <select class="form-select" name="interviewType" [(ngModel)]="formData.interviewType">
+                        <option value="HR">HR</option>
+                        <option value="TEQNIQAL">teqniqal</option>
+                    </select>
                 </div>
-                
 
-                <button class="btn btn-primary" style="margin: 10px;">Next</button>
-
-            </div>
-            <div class="col-8" style="height: 100%;">
-                <ngx-extended-pdf-viewer [src]="src" height="100%">
-                </ngx-extended-pdf-viewer>
-
-            </div>
-        </div>
-
-    </mat-step>
-    <mat-step editable="true">
-        <ng-template matStepLabel>Schedual Interview</ng-template>
-        
-        <div class="mb-3">
-            <label for="type"  class="form-label">Interview Type</label>
-            <!-- <input type="text" name="interviewType" class="form-control" id="type" placeholder="Interview Type" [(ngModel)]="formData.interviewType"> -->
-            <select class="form-select" name="interviewType" [(ngModel)]="formData.interviewType" >
-                <option value="HR">HR</option>
-                <option value="TEQNIQAL">teqniqal</option>
-            </select>
-        </div>
-
-          <mat-form-field class="w-100" appearance="fill">
-            <mat-label>Interviewers</mat-label>
-            <mat-chip-list #chipList aria-label="interviewers selection">
-                <mat-chip *ngFor="let technology of interviewers" (removed)="remove(technology)">
-                    {{technology}}
-                    <button matChipRemove>
-                        <mat-icon>cancel</mat-icon>
-                    </button>
-                </mat-chip>
-                <input placeholder="Interviewers..." [matChipInputFor]="chipList"
-                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                    (matChipInputTokenEnd)="add($event)">
-            </mat-chip-list>
-        </mat-form-field>
+                <mat-form-field class="w-100" appearance="fill">
+                    <mat-label>Interviewers</mat-label>
+                    <mat-chip-list #chipList aria-label="interviewers selection">
+                        <mat-chip *ngFor="let technology of interviewers" (removed)="remove(technology)">
+                            {{technology}}
+                            <button matChipRemove>
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip>
+                        <input placeholder="Interviewers..." [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                </mat-form-field>
 
 
 
-          <div class="mb-3">
-            <label for="date" class="form-label">Date</label>
-            <input type="date" class="form-control" id="date" name="date"  [(ngModel)]="formData.date" >
-          </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="date" name="date" [(ngModel)]="formData.date">
+                </div>
 
-          <div class="mb-3">
-              <textarea class="form-control" id="exampleFormControlTextarea1"  name="notes"  [(ngModel)]="formData.notes" rows="3" placeholder="Interview Notes"></textarea>
-            </div>
-        
-          <button class="btn btn-primary" type="submit">save</button>
-        <!-- <div>
+                <div class="mb-3">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="notes"
+                        [(ngModel)]="formData.notes" rows="3" placeholder="Interview Notes"></textarea>
+                </div>
+
+                <button class="btn btn-primary" type="submit">save</button>
+                <!-- <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
         </div> -->
-    </mat-step>
-</mat-stepper>
-</form>
+            </mat-step>
+        </mat-stepper>
+    </form>
+</div>
