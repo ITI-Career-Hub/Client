@@ -17,14 +17,14 @@
         <div class="col-2">
             <div class="test">
                 <div class="image"></div>
-                <p class="name">Student Name</p>
-                <p class="track">Track Name</p>
+                <p class="name">{{user.username}}</p>
+                <p class="track">{{user.departmentName}}</p>
                 <a href="#" class="edit">Edit Profile</a>
             </div>
 
             <div class="total mt-1">
                 <div>Total Interviews</div>
-                <div>3</div>
+                <div>{{interviews.length}}</div>
             </div>
 
         </div>
@@ -32,12 +32,12 @@
 
         <div class="col-8 ms-5">
             <p class="interview">Your Interviews</p>
-        
+
             <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
                 <mat-tab label="All">
-                    <div class="row w-100">
+                    <div class="row w-100" *ngFor="let item of interviews">
                         <div class="col-2">
-                            <p class="date">Tue 6 June</p>
+                            <p class="date">{{item.appointmentAppointmentDate}}</p>
                         </div>
                         <div class="col">
                             <div class="interview-box m-2">
@@ -46,125 +46,67 @@
                                     <img src="assets/images/userpng.png" class="user-image" width="44" height="44"
                                         alt="">
                                 </div>
-                                <div class="m-2">
-                                    <p>_VOIS</p>
-                                    <p class="text">Techincal Interview</p>
-                                    <p class="text">First Floor - Room 1012</p>
+                                <div class="m-2" style="padding-left: 25px;">
+                                    <p  style="margin: -1px;">{{item.appointmentCompanyCompanyName}}</p>
+                                    <p class="text"  style="margin: -1px;">{{item.appointmentInterviewType}} Interview</p>
+                                    <p class="text"  style="margin: -1px;">{{item.appointmentRoomName}}</p>
                                 </div>
-
-                                <!-- <div>
-                      <div class="check">
-                        <input type="checkbox" name="" id="">
-                      </div>
-                    </div> -->
                             </div>
-                            <div class="interview-box m-2">
-                                <div>
-                                    <img src="assets/images/userpng.png" class="user-image" width="44" height="44"
-                                        alt="">
-                                </div>
-                                <div class="m-2">
-                                    <p>_VOIS</p>
-                                    <p class="text">Techincal Interview</p>
-                                    <p class="text">First Floor - Room 1012</p>
-                                </div>
 
-                                <!-- <div>
-                      <div class="check">
-                        <input type="checkbox" name="" id="">
-                      </div>
-                    </div> -->
-                            </div>
                         </div>
                     </div>
                 </mat-tab>
                 <mat-tab label="Upcoming">
-                    <div class="row w-100">
-                        <div class="col-2">
-                            <p class="date">Tue 6 June</p>
-                        </div>
-                        <div class="col">
-                            <div class="interview-box m-2">
-
-                                <div>
-                                    <img src="assets/images/userpng.png" class="user-image" width="44" height="44"
-                                        alt="">
-                                </div>
-                                <div class="m-2">
-                                    <p>_VOIS</p>
-                                    <p class="text">Techincal Interview</p>
-                                    <p class="text">First Floor - Room 1012</p>
-                                </div>
-
-                                <!-- <div>
-                  <div class="check">
-                    <input type="checkbox" name="" id="">
-                  </div>
-                </div> -->
+                    <div class="row w-100" *ngFor="let item of interviews">
+                        <div *ngIf="item.attendanceStatus == 'PENDING' ">
+                            <div class="col-2">
+                                <p class="date">{{item.appointmentAppointmentDate}}</p>
                             </div>
-                            <div class="interview-box m-2">
-                                <div>
-                                    <img src="assets/images/userpng.png" class="user-image" width="44" height="44"
-                                        alt="">
-                                </div>
-                                <div class="m-2">
-                                    <p>_VOIS</p>
-                                    <p class="text">Techincal Interview</p>
-                                    <p class="text">First Floor - Room 1012</p>
+                            <div class="col">
+                                <div class="interview-box m-2">
+
+                                    <div>
+                                        <img src="assets/images/userpng.png" class="user-image" width="44" height="44"
+                                            alt="">
+                                    </div>
+                                    <div class="m-2" style="padding-left: 25px;">
+                                        <p  style="margin: -1px;">{{item.appointmentCompanyCompanyName}}</p>
+                                        <p  style="margin: -1px;" class="text">{{item.appointmentInterviewType}} Interview</p>
+                                        <p  style="margin: -1px;" class="text">{{item.appointmentRoomName}}</p>
+                                    </div>
                                 </div>
 
-                                <!-- <div>
-                  <div class="check">
-                    <input type="checkbox" name="" id="">
-                  </div>
-                </div> -->
                             </div>
                         </div>
+
                     </div>
                 </mat-tab>
                 <mat-tab label="Done">
-                    <div class="row w-100">
-                        <div class="col-2">
-                            <p class="date">Tue 6 June</p>
-                        </div>
-                        <div class="col">
-                            <div class="interview-box m-2">
-
-                                <div>
-                                    <img src="assets/images/userpng.png" class="user-image" width="44" height="44"
-                                        alt="">
-                                </div>
-                                <div class="m-2">
-                                    <p>_VOIS</p>
-                                    <p class="text">Techincal Interview</p>
-                                    <p class="text">First Floor - Room 1012</p>
-                                </div>
-
-                                <!-- <div>
-                  <div class="check">
-                    <input type="checkbox" name="" id="">
-                  </div>
-                </div> -->
+                    
+                    <div class="row w-100" *ngFor="let item of interviews">
+                        <div *ngIf="item.attendanceStatus == 'COMPLETED' ">
+                            <div class="col-2">
+                                <p class="date">{{item.appointmentAppointmentDate}}</p>
                             </div>
-                            <div class="interview-box m-2">
-                                <div>
-                                    <img src="assets/images/userpng.png" class="user-image" width="44" height="44"
-                                        alt="">
-                                </div>
-                                <div class="m-2">
-                                    <p>_VOIS</p>
-                                    <p class="text">Techincal Interview</p>
-                                    <p class="text">First Floor - Room 1012</p>
+                            <div class="col">
+                                <div class="interview-box m-2">
+
+                                    <div>
+                                        <img src="assets/images/userpng.png" class="user-image" width="44" height="44"
+                                            alt="">
+                                    </div>
+                                    <div class="m-2" style="padding-left:25px">
+                                        <p style="margin: -1px;">{{item.appointmentCompanyCompanyName}}</p>
+                                        <p class="text" style="margin: -1px;">{{item.appointmentInterviewType}} Interview</p>
+                                        <p class="text" style="margin: -1px;">{{item.appointmentRoomName}}</p>
+                                    </div>
                                 </div>
 
-                                <!-- <div>
-                  <div class="check">
-                    <input type="checkbox" name="" id="">
-                  </div>
-                </div> -->
                             </div>
                         </div>
+
                     </div>
+
                 </mat-tab>
             </mat-tab-group>
 

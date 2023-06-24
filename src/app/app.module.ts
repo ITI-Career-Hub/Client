@@ -37,7 +37,8 @@ import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-view
 import { AddModalComponent } from './add-modal/add-modal.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input'
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [AppComponent, ExamplePdfViewerComponent, AddModalComponent],
@@ -63,6 +64,7 @@ import { MatInputModule } from '@angular/material/input';
     MatNativeDateModule,
     MatNativeDateModule,
     MatInputModule
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

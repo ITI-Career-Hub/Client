@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
     providedIn: 'root'
 })
@@ -26,6 +27,12 @@ export class DisciplineService {
         return this.httpClient.get<any>(apiUrl);
     }
 
+    ScheduleInterview(interviewData){
+        const apiUrl = `${this.apiEndpoint}/appointments`;
+        return this.httpClient.post<any>(apiUrl,interviewData);
+    }
+
+    
   
 
 }
