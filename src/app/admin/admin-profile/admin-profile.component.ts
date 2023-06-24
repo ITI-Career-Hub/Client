@@ -11,6 +11,7 @@ import { EventService } from 'src/app/services/event.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { TrackService } from 'src/app/services/track.service';
 import { AddCompanyModalComponent } from 'src/app/add-track-modal/add-track-modal.component';
+import { Route, Router } from '@angular/router';
 
 
 
@@ -25,6 +26,11 @@ export class AdminProfileComponent implements OnInit {
   eventData: MatTableDataSource<Object[]>;
   trackData: MatTableDataSource<Object[]>;
   companyData: MatTableDataSource<Object[]>;
+  userInfo: any;
+  name: string;
+  eventCount: number;
+  trackCount: number;
+  companyCount: number;
 
   openModal(tab: string): void {
     this.dialog.open(AddModalComponent, {
@@ -58,7 +64,13 @@ export class AdminProfileComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private readonly trackService: TrackService, private readonly companyService: CompanyService, private readonly dataService: DataService, public dialog: MatDialog, private eventService: EventService) { }
+  constructor(private router: Router, private readonly trackService: TrackService, private readonly companyService: CompanyService, private readonly dataService: DataService, public dialog: MatDialog, private eventService: EventService) { }
+
+
+  redirectToLink() {
+    const link = '/company/register'; // Replace with the desired link
+    this.router.navigateByUrl(link);
+  }
 
   ngOnInit() {
     // this.dataSource = new MatTableDataSource(this.dataService.create100Users());
@@ -69,6 +81,7 @@ export class AdminProfileComponent implements OnInit {
       this.eventData = new MatTableDataSource(response);
       this.selection = new SelectionModel<Object[]>(true, []);
       console.log(this.eventData)
+      this.eventCount = response.length
     }, (error) => {
       console.log(error)
     })
@@ -76,6 +89,7 @@ export class AdminProfileComponent implements OnInit {
     this.companyService.getAllCompanies().subscribe((response) => {
       this.companyData = response
       console.log(this.companyData)
+      this.companyCount = response.length
     }, (error) => {
       console.log(error)
     })
@@ -84,9 +98,14 @@ export class AdminProfileComponent implements OnInit {
     this.trackService.getEvents().subscribe((response) => {
       this.trackData = response
       console.log(this.trackData)
+      this.trackCount = response.length
     }, (error) => {
       console.log(error)
     })
+
+    this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    this.image = this.userInfo["pictureUrl"]
+    this.name = this.userInfo["username"]
   }
 
   ngAfterViewInit() {

@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EventService } from '../services/event.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-modal',
@@ -21,7 +22,7 @@ export class AddModalComponent implements OnInit {
   street: string;
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private readonly eventService: EventService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private readonly eventService: EventService, private location: Location) { }
 
 
   ngOnInit(): void {
@@ -32,6 +33,11 @@ export class AddModalComponent implements OnInit {
 
   closeDialog(): void {
     // this.data.close();
+  }
+
+  refresh(): void {
+    this.location.go(this.location.path());
+    window.location.reload();
   }
 
   saveEvent(): void {
@@ -50,12 +56,14 @@ export class AddModalComponent implements OnInit {
     this.eventService.createEvent(eventInfo).subscribe((response) => {
       console.log(response)
       console.log("Event Saved Successfully")
+      this.refresh()
     },
       (error) => {
         console.log(error)
       }
     )
   }
+
 
   date = new FormControl(this.getMonthYearString(new Date()));
   minDate = new Date();
