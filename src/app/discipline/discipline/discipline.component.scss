@@ -5,3 +5,39 @@
 .mat-mdc-form-field {
     margin-top: 16px;
 }
+
+.interview-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    // justify-content: space-between;
+    // padding: 7px 16px;
+
+    // padding: 5px 25px;
+    box-sizing: content-box;
+
+    // width: 503px;
+    height: 82px;
+
+    /* Other / White */
+
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+
+
+.user-image {
+    box-sizing: border-box;
+
+    border: 1px solid #FFFFFF;
+    border-radius: 32px;
+}
+
+.text {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    color: #728095;
+
+}

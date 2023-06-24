@@ -74,12 +74,12 @@
                         </div> -->
 
                         <div  style="display: flex; justify-content: space-between;align-items: center;width: 95%;" *ngFor="let item of students"  (click)="chooseStudent(item)">
-                            <div class="col" class="w-100">
+                            <div class="col" style="width: 95%;">
                                 <div class="interview-box m-2" >
-                                    <!-- <div>
-                                        <img [src]="item.studentPictureUrl" class="user-image" width="44" height="44"
+                                    <div>
+                                        <img [src]="item.pictureUrl" class="user-image" width="44" height="44"
                                             alt="user image">
-                                    </div> -->
+                                    </div>
                                     <div class="m-2">
                                         <p style="margin: -1px;">{{item.firstName + ' ' + item.lastName}}</p>
                                     </div>
