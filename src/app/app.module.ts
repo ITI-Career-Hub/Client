@@ -63,7 +63,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatNativeDateModule,
     MatNativeDateModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
     MatChipsModule
   ],
   providers: [],
