@@ -27,12 +27,15 @@ export class DisciplineService {
         return this.httpClient.get<any>(apiUrl);
     }
 
-    ScheduleInterview(interviewData){
+    ScheduleInterview(interviewData) {
         const apiUrl = `${this.apiEndpoint}/appointments`;
-        return this.httpClient.post<any>(apiUrl,interviewData);
+        return this.httpClient.post<any>(apiUrl, interviewData);
     }
 
-    
-  
+    public getDepartments(): Observable<any> {
+        const apiUrl = `${this.apiEndpoint}/department`
+        return this.httpClient.get<any>(apiUrl);
+    }
+
 
 }

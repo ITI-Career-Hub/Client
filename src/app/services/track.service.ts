@@ -22,4 +22,9 @@ export class TrackService {
     return this.httpClient.get(urlAPI);
   }
 
+  createTrack(data: any) {
+    const urlAPI = `${api}/department`;
+    return this.httpClient.post(urlAPI, data);
+  }
+
 }
