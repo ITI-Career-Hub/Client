@@ -6,6 +6,15 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { FormControl } from '@angular/forms';
+import { EventService } from 'src/app/services/event.service';
+import { CompanyService } from 'src/app/services/company.service';
+import { TrackService } from 'src/app/services/track.service';
+import { AddCompanyModalComponent } from 'src/app/add-track-modal/add-track-modal.component';
+
+
+
+
 
 @Component({
   selector: 'app-admin-profile',
@@ -13,44 +22,89 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./admin-profile.component.scss']
 })
 export class AdminProfileComponent implements OnInit {
+  eventData: MatTableDataSource<Object[]>;
+  trackData: MatTableDataSource<Object[]>;
+  companyData: MatTableDataSource<Object[]>;
 
   openModal(tab: string): void {
     this.dialog.open(AddModalComponent, {
       width: '400px',
       data: { tab: tab }
     });
+
+  }
+
+  openCompanyModal(tab: string): void {
+    this.dialog.open(AddCompanyModalComponent, {
+      width: '400px',
+      data: { tab: tab }
+    });
+
   }
 
 
-  displayedColumns = ['select', 'id', 'interviewer', 'date', 'candidatesNum', 'color'];
-  dataSource: MatTableDataSource<UserData>;
-  selection: SelectionModel<UserData>;
+
+  date = new FormControl(new Date());
+  serializedDate = new FormControl((new Date()).toISOString());
+
+  eventColumns = ['eventName', 'startDate', 'endDate', 'branch'];
+  trackColumns = ['track', 'discipline', 'supervisor', 'students', 'edit'];
+  companyColumns = ['companyName', 'edit'];
+
+
+
+  // dataSource: MatTableDataSource<UserData>;
+  selection: SelectionModel<Object[]>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private readonly dataService: DataService, public dialog: MatDialog) { }
+  constructor(private readonly trackService: TrackService, private readonly companyService: CompanyService, private readonly dataService: DataService, public dialog: MatDialog, private eventService: EventService) { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.dataService.create100Users());
-    this.selection = new SelectionModel<UserData>(true, []);
+    // this.dataSource = new MatTableDataSource(this.dataService.create100Users());
+    // this.selection = new SelectionModel<UserData>(true, []);
+
+    this.eventService.getEvents().subscribe((response) => {
+      this.eventData = response
+      this.eventData = new MatTableDataSource(response);
+      this.selection = new SelectionModel<Object[]>(true, []);
+      console.log(this.eventData)
+    }, (error) => {
+      console.log(error)
+    })
+
+    this.companyService.getAllCompanies().subscribe((response) => {
+      this.companyData = response
+      console.log(this.companyData)
+    }, (error) => {
+      console.log(error)
+    })
+
+
+    this.trackService.getEvents().subscribe((response) => {
+      this.trackData = response
+      console.log(this.trackData)
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.eventData.paginator = this.paginator;
+    this.eventData.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    this.eventData.filter = filterValue.trim().toLowerCase();
+    if (this.eventData.paginator) {
+      this.eventData.paginator.firstPage();
     }
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
+    const numRows = this.eventData.data.length;
     return numSelected === numRows;
   }
 
@@ -58,7 +112,7 @@ export class AdminProfileComponent implements OnInit {
   masterToggle() {
     this.isAllSelected()
       ? this.selection.clear()
-      : this.dataSource.data.forEach(row => this.selection.select(row));
+      : this.eventData.data.forEach(row => this.selection.select(row));
   }
 
 

@@ -1,0 +1,41 @@
+<div>
+    <p class="fs-2"> New Track</p>
+
+    <div>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Track Name</mat-label>
+            <input matInput placeholder="Track Name" [(ngModel)]="track">
+        </mat-form-field>
+
+        <br>
+        <br>
+        <br>
+
+        <label for="Discipline">Choose Discipline</label>
+        <select class="form-select" name="discplineName" (change)="handelStaff($event.target.value)"
+            [(ngModel)]="formData.discplineName">
+            <option value="{{item.key}}" *ngFor="let item of discipines">
+                {{item.value}}
+            </option>
+        </select>
+
+        <br><br>
+        <label for="discpline">Choose Supervisor</label>
+        <select class="form-select" name="trackName" #userSelect (change)="handelTrackName(userSelect)"
+            [(ngModel)]="formData.trackid">
+            <option value="{{item.id}}" *ngFor="let item of staff">{{item.firstName}} {{item.lastName}}</option>
+        </select>
+
+        <br>
+
+        <!-- 
+        <button class="btn btn-danger me-2">Cancel</button>
+        <button class="btn btn-primary">Next</button> -->
+    </div>
+</div>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button color="primary" [mat-dialog-close]="true" (click)="saveEvent()">Save</button>
+</mat-dialog-actions>

@@ -46,7 +46,7 @@
                         (click)="openModal('event')">Add
                         Event</button>
                 </div>
-                <table mat-table [dataSource]="dataSource" matSort class="w-100">
+                <table mat-table [dataSource]="eventData" matSort class="w-100">
                     <ng-container matColumnDef="select">
                         <th mat-header-cell *matHeaderCellDef>
                             <mat-checkbox (change)="$event ? masterToggle() : null"
@@ -60,35 +60,29 @@
                             </mat-checkbox>
                         </td>
                     </ng-container>
-                    <ng-container matColumnDef="id">
+                    <ng-container matColumnDef="eventName">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Event Name </th>
-                        <td mat-cell *matCellDef="let row"> {{row.trackName}} </td>
+                        <td mat-cell *matCellDef="let row"> {{row.eventName}} </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="candidatesNum">
+                    <ng-container matColumnDef="startDate">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </th>
-                        <td mat-cell *matCellDef="let row"> {{row.candidatesNum}} </td>
+                        <td mat-cell *matCellDef="let row"> {{row.startDate}} </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="interviewer">
+                    <ng-container matColumnDef="endDate">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> End Date </th>
-                        <td mat-cell *matCellDef="let row"> {{row.interviewer}} </td>
+                        <td mat-cell *matCellDef="let row"> {{row.endDate}} </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="date">
+
+                    <ng-container matColumnDef="branch">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Branch </th>
-                        <td mat-cell *matCellDef="let row"> {{row.date}} </td>
+                        <td mat-cell *matCellDef="let row"> {{ row.state }}, {{ row.city }}, {{ row.street }} </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="color">
-                        <th mat-header-cell *matHeaderCellDef> Edit </th>
-                        <td mat-cell *matCellDef="let row">
-                            <a href="#" style="color: blue;">Edit</a>
-                        </td>
-                    </ng-container>
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+                    <tr mat-header-row *matHeaderRowDef="eventColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: eventColumns;" (click)="selection.toggle(row)"></tr>
                 </table>
                 <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 
@@ -102,7 +96,12 @@
                 </div>
             </ng-template>
             <div class="tab-content">
-                <table mat-table [dataSource]="dataSource" matSort class="w-100">
+                <div class="table-header">
+                    <button style="background-color: #2773FF; color: #F7F9FB;" mat-button
+                        (click)="openCompanyModal('event')">Add
+                        Add Track</button>
+                </div>
+                <table mat-table [dataSource]="trackData" matSort class="w-100">
                     <ng-container matColumnDef="select">
                         <th mat-header-cell *matHeaderCellDef>
                             <mat-checkbox (change)="$event ? masterToggle() : null"
@@ -116,35 +115,37 @@
                             </mat-checkbox>
                         </td>
                     </ng-container>
-                    <ng-container matColumnDef="id">
+                    trackColumns = ['track', 'discipline', 'supervisor', 'students', 'edit'];
+
+                    <ng-container matColumnDef="track">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Track Name </th>
-                        <td mat-cell *matCellDef="let row"> {{row.trackName}} </td>
+                        <td mat-cell *matCellDef="let row"> {{row.departmentName}} </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="candidatesNum">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Number Of Candidates </th>
-                        <td mat-cell *matCellDef="let row"> {{row.candidatesNum}} </td>
+                    <ng-container matColumnDef="discipline">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Discipline </th>
+                        <td mat-cell *matCellDef="let row"> {{row.discipline}} </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="interviewer">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Interviewer </th>
-                        <td mat-cell *matCellDef="let row"> {{row.interviewer}} </td>
+                    <ng-container matColumnDef="supervisor">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Supervisor </th>
+                        <td mat-cell *matCellDef="let row"> {{row.supervisor}} </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="date">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                    <ng-container matColumnDef="students">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Students </th>
                         <td mat-cell *matCellDef="let row"> {{row.date}} </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="color">
+                    <ng-container matColumnDef="edit">
                         <th mat-header-cell *matHeaderCellDef> Edit </th>
                         <td mat-cell *matCellDef="let row">
                             <a href="#" style="color: blue;">Edit</a>
                         </td>
                     </ng-container>
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+                    <tr mat-header-row *matHeaderRowDef="trackColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: trackColumns;" (click)="selection.toggle(row)"></tr>
                 </table>
                 <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 
@@ -157,9 +158,14 @@
                     <div class="event-count">3</div>
                 </div>
             </ng-template>
-            <div style="background-color: #F7F9FB;"><br><br></div>
             <div class="tab-content">
-                <table mat-table [dataSource]="dataSource" matSort class="w-100">
+                <div class="table-header">
+                    <button style="background-color: #2773FF; color: #F7F9FB;" mat-button
+                        (click)="openModal('event')">Add
+                        Company</button>
+                </div>
+                <table mat-table [dataSource]="companyData" matSort class="w-100">
+
                     <ng-container matColumnDef="select">
                         <th mat-header-cell *matHeaderCellDef>
                             <mat-checkbox (change)="$event ? masterToggle() : null"
@@ -173,35 +179,20 @@
                             </mat-checkbox>
                         </td>
                     </ng-container>
-                    <ng-container matColumnDef="id">
+                    <ng-container matColumnDef="companyName">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Track Name </th>
-                        <td mat-cell *matCellDef="let row"> {{row.trackName}} </td>
+                        <td mat-cell *matCellDef="let row"> {{row.companyName}} </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="candidatesNum">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Number Of Candidates </th>
-                        <td mat-cell *matCellDef="let row"> {{row.candidatesNum}} </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="interviewer">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Interviewer </th>
-                        <td mat-cell *matCellDef="let row"> {{row.interviewer}} </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="date">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-                        <td mat-cell *matCellDef="let row"> {{row.date}} </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="color">
+                    <ng-container matColumnDef="edit">
                         <th mat-header-cell *matHeaderCellDef> Edit </th>
                         <td mat-cell *matCellDef="let row">
                             <a href="#" style="color: blue;">Edit</a>
                         </td>
                     </ng-container>
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+                    <tr mat-header-row *matHeaderRowDef="companyColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: companyColumns;" (click)="selection.toggle(row)"></tr>
                 </table>
                 <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 

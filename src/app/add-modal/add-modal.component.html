@@ -1,32 +1,45 @@
-<h2 mat-dialog-title>Add {{ data.tab }}</h2>
-<mat-dialog-content>
-    <mat-form-field>
-        <!-- <input matInput placeholder="Event Name" [(ngModel)]="eventName" name="eventName" required> -->
-    </mat-form-field>
+<h2 class="event-header">Add New Event</h2>
+<mat-form-field class="example-full-width">
+    <mat-label>Event Name</mat-label>
+    <input matInput placeholder="Event Name" [(ngModel)]="eventName">
+</mat-form-field>
+
+<br>
+<br>
+
+<mat-form-field class="example-full-width">
+    <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate placeholder="Start date" [(ngModel)]="startDate">
+        <input matEndDate placeholder="End date" [(ngModel)]="endDate">
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+</mat-form-field>
+
+<br>
+<br>
+
+<mat-form-field class="example-full-width">
+    <mat-label>State</mat-label>
+    <input matInput placeholder="State" [(ngModel)]="state">
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+    <mat-label>City</mat-label>
+    <input matInput placeholder="City" [(ngModel)]="city">
+</mat-form-field>
+
+
+<mat-form-field class="example-full-width">
+    <mat-label>Street</mat-label>
+    <input matInput placeholder="Street" [(ngModel)]="street">
+</mat-form-field>
 
 
 
-    <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-
-    <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field>
-        <mat-label>Branch</mat-label>
-        <!-- <input matInput placeholder="Event Name" [(ngModel)]="eventName" name="eventName" required> -->
-
-    </mat-form-field>
-</mat-dialog-content>
 
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button color="primary" [mat-dialog-close]="true">Save</button>
+    <button mat-button color="primary" [mat-dialog-close]="true" (click)="saveEvent()">Save</button>
 </mat-dialog-actions>
