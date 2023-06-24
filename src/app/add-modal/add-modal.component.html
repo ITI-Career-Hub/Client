@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Add {{ data.tab }}</h2>
+<mat-dialog-content>
+    <mat-form-field>
+        <!-- <input matInput placeholder="Event Name" [(ngModel)]="eventName" name="eventName" required> -->
+    </mat-form-field>
+
+
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Branch</mat-label>
+        <!-- <input matInput placeholder="Event Name" [(ngModel)]="eventName" name="eventName" required> -->
+
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button color="primary" [mat-dialog-close]="true">Save</button>
+</mat-dialog-actions>
