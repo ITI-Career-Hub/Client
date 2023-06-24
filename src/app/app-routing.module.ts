@@ -5,6 +5,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { ProfileComponent } from './profile/profile/profile.component';
 import { DisciplineComponent } from './discipline/discipline/discipline.component';
 import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
+import { CompanyAttendanceComponent } from './company/company-attendance/company-attendance.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'interviews',
+    component:CompanyAttendanceComponent,
+    loadChildren: () =>
+      import('./company/company.module').then((m) => m.CompanyModule),
   },
   {
     path: 'login',
