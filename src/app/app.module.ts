@@ -39,9 +39,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input'
 import { MatChipsModule } from '@angular/material/chips';
+import { FormsModule } from '@angular/forms';
+import { AddCompanyModalComponent } from './add-track-modal/add-track-modal.component';
 
 @NgModule({
-  declarations: [AppComponent, ExamplePdfViewerComponent, AddModalComponent],
+  declarations: [AppComponent, ExamplePdfViewerComponent, AddModalComponent, AddCompanyModalComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -64,7 +66,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatNativeDateModule,
     MatNativeDateModule,
     MatInputModule,
-    MatChipsModule
+    MatChipsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

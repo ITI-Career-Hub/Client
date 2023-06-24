@@ -24,7 +24,13 @@ export class StaffService {
   }
 
   createStaff(data: any): Observable<any> {
-    const urlAPI = '${api}/register/staff';
+    const urlAPI = `${api}/register/staff`;
     return this.httpClient.post(urlAPI, data);
   }
+
+  getAllStaffInDepartment(id: number): Observable<any> {
+    const urlAPI = `${api}/staff/department/${id}`;
+    return this.httpClient.get(urlAPI);
+  }
+
 }
