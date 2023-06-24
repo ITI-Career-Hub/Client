@@ -37,15 +37,11 @@
             <ng-template mat-tab-label>
                 <div class="tab-label">
                     <span class="kk">EVENTS</span>
-                    <div class="event-count">3</div>
+                    <div class="event-count">{{ size }}</div>
                 </div>
             </ng-template>
             <div class="tab-content">
-                <div class="table-header">
-                    <button style="background-color: #2773FF; color: #F7F9FB;" mat-button
-                        (click)="openModal('event')">Add
-                        Event</button>
-                </div>
+            
                 <table mat-table [dataSource]="eventData" matSort class="w-100">
                     <ng-container matColumnDef="select">
                         <th mat-header-cell *matHeaderCellDef>

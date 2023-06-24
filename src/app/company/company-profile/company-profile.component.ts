@@ -11,6 +11,7 @@ import { CompanyService } from 'src/app/services/company.service';
 import { TrackService } from 'src/app/services/track.service';
 import { AddCompanyModalComponent } from 'src/app/add-track-modal/add-track-modal.component';
 import { DataService } from 'src/app/admin/tables/data.service';
+import { CompanyProfileService } from 'src/app/services/companyProfile.service';
 
 @Component({
   selector: 'app-company-profile',
@@ -20,8 +21,7 @@ import { DataService } from 'src/app/admin/tables/data.service';
 export class CompanyProfileComponent implements OnInit {
 
   eventData: MatTableDataSource<Object[]>;
-  trackData: MatTableDataSource<Object[]>;
-  companyData: MatTableDataSource<Object[]>;
+  size = 0;
 
   openModal(tab: string): void {
     this.dialog.open(AddModalComponent, {
@@ -55,14 +55,15 @@ export class CompanyProfileComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private readonly trackService: TrackService, private readonly companyService: CompanyService, private readonly dataService: DataService, public dialog: MatDialog, private eventService: EventService) { }
+  constructor(public dialog: MatDialog, private eventService: EventService,private companyProfileService:CompanyProfileService) { }
 
   ngOnInit() {
     // this.dataSource = new MatTableDataSource(this.dataService.create100Users());
     // this.selection = new SelectionModel<UserData>(true, []);
 
-    this.eventService.getEvents().subscribe((response) => {
+    this.companyProfileService.getEvents(6).subscribe((response) => {
       this.eventData = response
+      this.size = response.length;
       this.eventData = new MatTableDataSource(response);
       this.selection = new SelectionModel<Object[]>(true, []);
       console.log(this.eventData)
@@ -70,20 +71,6 @@ export class CompanyProfileComponent implements OnInit {
       console.log(error)
     })
 
-    this.companyService.getAllCompanies().subscribe((response) => {
-      this.companyData = response
-      console.log(this.companyData)
-    }, (error) => {
-      console.log(error)
-    })
-
-
-    this.trackService.getEvents().subscribe((response) => {
-      this.trackData = response
-      console.log(this.trackData)
-    }, (error) => {
-      console.log(error)
-    })
   }
 
   ngAfterViewInit() {
