@@ -107,7 +107,7 @@ export class LoginComponent implements OnInit {
     // const state = this.generateState();
 
     const authorizationUrl = `${this.authorizationEndpoint}?response_type=code&client_id=${this.clientId}&redirect_uri=${this.redirectUri}&code_challenge=${codeChallenge}&code_challenge_method=S256`;
-
+    // const authorizationUrl = 'http://localhost:8888/oauth2/authorize?response_type=code&client_id=client&scope=openid&redirect_uri=http://localhost:8888/authorized&code_challenge=J0_D1-mu85IEM27JDkJSAABm7ouWlvrdyBTHH1PyVqQ&code_challenge_method=S256';
     window.location.href = authorizationUrl;
   }
 }
