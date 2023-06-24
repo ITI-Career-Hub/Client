@@ -9,6 +9,10 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { getAnalytics } from "firebase/analytics";
 
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
+
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { AvatarModule } from 'primeng/avatar';
@@ -30,9 +34,13 @@ const firebaseConfig = {
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
+import { AddModalComponent } from './add-modal/add-modal.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [AppComponent, ExamplePdfViewerComponent],
+  declarations: [AppComponent, ExamplePdfViewerComponent, AddModalComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -46,7 +54,15 @@ import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-view
     AvatarModule,
     PdfViewerModule,
     NgxExtendedPdfViewerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatTabsModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatNativeDateModule,
+    MatNativeDateModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

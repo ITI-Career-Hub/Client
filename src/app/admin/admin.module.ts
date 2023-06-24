@@ -8,11 +8,25 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+
 import { AdminRoutingModule } from './admin-routing.module';
 import { LayoutComponent } from './layout/layout.component';
 import { TopNavComponent } from './layout/top-nav/top-nav.component';
 import { SideNavComponent } from './layout/side-nav/side-nav.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { CompanyProfileComponent } from './company-profile/company-profile.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { TablesRoutingModule } from './tables/tables-routing.module';
+
 
 
 @NgModule({
@@ -28,8 +42,18 @@ import { MatChipsModule } from '@angular/material/chips';
     MatListModule,
     MatIconModule,
     MatChipsModule,
-
+    MatDialogModule,
+    MatTabsModule,
+    CommonModule,
+    TablesRoutingModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule
   ],
-  declarations: [LayoutComponent, TopNavComponent, SideNavComponent]
+  declarations: [LayoutComponent, TopNavComponent, SideNavComponent, AdminProfileComponent]
 })
 export class AdminModule { }

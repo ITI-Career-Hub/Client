@@ -5,6 +5,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { ProfileComponent } from './profile/profile/profile.component';
 import { DisciplineComponent } from './discipline/discipline/discipline.component';
 import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
+import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
     // path: 'signup',
     loadChildren: () =>
       import('./admin/student-own-register/studnet-own-register.module').then((m) => m.StudnetOwnRegisterModule),
-  }, 
+  },
   {
     path: 'staff/register',
     loadChildren: () =>
@@ -50,7 +51,13 @@ const routes: Routes = [
     path: 'company/signup/:token',
     loadChildren: () =>
       import('./admin/company-owner-register/company-owner-register.module').then((m) => m.CompanyOwnerRegisterModule),
-  }, {
+  },
+  {
+    path: 'admin/profile',
+    loadChildren: () =>
+      import('./admin/admin-profile/admin-profile.module').then((m) => m.AdminProfileModule),
+  }
+  , {
     path: 'profile',
     component: ProfileComponent,
     loadChildren: () =>
@@ -63,7 +70,7 @@ const routes: Routes = [
 
 
   },
-  
+
   {
 
     path: 'discipline',
