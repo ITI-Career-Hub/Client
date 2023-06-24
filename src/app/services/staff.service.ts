@@ -28,8 +28,8 @@ export class StaffService {
     return this.httpClient.post(urlAPI, data);
   }
 
-  getAllStaffInDepartment(id: number): Observable<any> {
-    const urlAPI = `${api}/staff/department/${id}`;
+  getAllStaffInDepartment(): Observable<any> {
+    const urlAPI = `${api}/staff`;
     return this.httpClient.get(urlAPI);
   }
 
