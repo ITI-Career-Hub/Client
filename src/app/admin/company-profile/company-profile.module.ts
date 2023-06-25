@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TablesRoutingModule } from '../tables/tables-routing.module';
+import { CompanyProfileRoutingModule } from 'src/app/company/company-profile/company-profile-routing.module';
 
 
 
@@ -30,7 +31,8 @@ import { TablesRoutingModule } from '../tables/tables-routing.module';
     MatInputModule,
     MatCheckboxModule,
     MatTabsModule,
-    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule,TablesRoutingModule
+    CompanyProfileRoutingModule,
+    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule, TablesRoutingModule
   ]
 })
 export class CompanyProfileModule { }
