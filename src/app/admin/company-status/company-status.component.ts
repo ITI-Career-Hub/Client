@@ -100,6 +100,10 @@ export class CompanyStatusComponent implements OnInit {
       } else if (eventId && role == "ADMIN") {
         this.doAdminAPICallForInterviews(eventId)
       }
+      else if (eventId && role == "STAFF") {
+        const departmentId = userData["departmentId"]
+        this.doStaffAPICallForInterviews(eventId, departmentId)
+      }
 
     });
 
@@ -168,6 +172,20 @@ export class CompanyStatusComponent implements OnInit {
     })
   }
 
+
+  doStaffAPICallForInterviews(eventId: number, departmentId: number) {
+    this.appointmentService.getStaffInterviews(eventId, departmentId).subscribe((response) => {
+      console.log("3333..Event Response:: ")
+      console.log(response)
+      // this.companyScheduledData = response
+      const allData: any = response
+      this.companyScheduledData = allData.filter((data) => data["appointmentDate"] != null)
+      this.companyPendingData = allData.filter((data) => data["appointmentDate"] == null)
+
+    }, (error) => {
+      console.log(error)
+    })
+  }
 
   ngAfterViewInit() {
     this.companyPendingData.paginator = this.paginator;

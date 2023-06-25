@@ -13,6 +13,7 @@ import { AddCompanyModalComponent } from 'src/app/add-track-modal/add-track-moda
 import { DataService } from 'src/app/admin/tables/data.service';
 import { CompanyProfileService } from 'src/app/services/companyProfile.service';
 import { StaffProfileService } from 'src/app/services/staffProfile.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-staff-profile',
   templateUrl: './staff-profile.component.html',
@@ -56,7 +57,7 @@ export class StaffProfileComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(public dialog: MatDialog, private eventService: EventService,private staffProfileService:StaffProfileService) { }
+  constructor(private router: Router, public dialog: MatDialog, private eventService: EventService, private staffProfileService: StaffProfileService) { }
 
   ngOnInit() {
     // this.dataSource = new MatTableDataSource(this.dataService.create100Users());
@@ -141,6 +142,11 @@ export class StaffProfileComponent implements OnInit {
     if (file) {
       reader.readAsDataURL(file);
     }
+  }
+
+
+  onEventRowClick(row: any) {
+    this.router.navigateByUrl(`/company/status/${row.id}`)
   }
 
 }

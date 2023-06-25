@@ -33,7 +33,7 @@ import { StaffProfileRoutingModule } from './staff-profile-routing.module';
     MatInputModule,
     MatCheckboxModule,
     MatTabsModule,
-    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule,StaffProfileRoutingModule
+    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule, StaffProfileRoutingModule
   ]
 })
 export class StaffProfileModule { }
