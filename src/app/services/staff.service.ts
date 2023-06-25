@@ -33,4 +33,10 @@ export class StaffService {
     return this.httpClient.get(urlAPI);
   }
 
+  public getStaffInDepartment(id: number): Observable<any> {
+    const apiUrl = `${api}/staff/department/${id}`
+    return this.httpClient.get<any>(apiUrl);
+  }
+
+
 }

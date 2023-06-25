@@ -69,6 +69,15 @@ const routes: Routes = [
     path: 'company/profile',
     loadChildren: () =>
       import('./company/company.module').then((m) => m.CompanyModule),
+  }, {
+    path: 'company/status',
+    loadChildren: () =>
+      import('./admin/company-status/company-status.module').then((m) => m.CompanyStatusModule),
+  },
+  {
+    path: 'track/:id',
+    loadChildren: () =>
+      import('./admin/admin-staff-student/admin-staff-student.module').then((m) => m.AdminStaffStudentModule),
   },
   {
     path: 'staff/profile',

@@ -37,8 +37,8 @@ import { CompanyProfileRoutingModule } from './company-profile/company-profile-r
     MatInputModule,
     MatCheckboxModule,
     MatTabsModule,
-    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule,TablesRoutingModule,CompanyProfileRoutingModule
+    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule, TablesRoutingModule, CompanyProfileRoutingModule
   ],
-  providers:[DataService]
+  providers: [DataService]
 })
 export class CompanyModule { }

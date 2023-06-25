@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 export class TopNavComponent implements OnInit {
   @Output() sideNavToggled = new EventEmitter<void>();
 
-  constructor(private readonly router: Router) {}
+  constructor(private readonly router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   toggleSidebar() {
     this.sideNavToggled.emit();
