@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'interviews',
-    component:CompanyAttendanceComponent,
+    component: CompanyAttendanceComponent,
     loadChildren: () =>
       import('./company/company.module').then((m) => m.CompanyModule),
   },
@@ -66,17 +66,17 @@ const routes: Routes = [
       import('./admin/admin-profile/admin-profile.module').then((m) => m.AdminProfileModule),
   },
   {
-    path: 'company',
+    path: 'company/profile',
     loadChildren: () =>
       import('./company/company.module').then((m) => m.CompanyModule),
   },
   {
-    path: 'staff',
+    path: 'staff/profile',
     loadChildren: () =>
       import('./admin/staff-profile/staff-profile.module').then((m) => m.StaffProfileModule),
   }
   , {
-    path: 'profile',
+    path: 'student/profile',
     component: ProfileComponent,
     loadChildren: () =>
       import('./profile/profile.module').then((m) => m.ProfileModule),

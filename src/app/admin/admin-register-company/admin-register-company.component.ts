@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CompanyService } from 'src/app/services/company.service';
 
 @Component({
@@ -12,9 +13,10 @@ export class AdminRegisterCompanyComponent implements OnInit {
   username: string;
 
 
-  constructor(private companyService: CompanyService) { }
+  constructor(private route: Router, private companyService: CompanyService) { }
 
   ngOnInit(): void {
+
   }
 
   registerNewCompany() {
@@ -22,8 +24,11 @@ export class AdminRegisterCompanyComponent implements OnInit {
       email: this.email,
       username: this.username
     }
+    console.log("first")
     this.companyService.createCompany(data).subscribe(
+
       (response) => {
+        console.log("second")
         this.email = response["email"]
         console.log('valid token', response);
         // Handle the response from the server
@@ -33,6 +38,8 @@ export class AdminRegisterCompanyComponent implements OnInit {
         // Handle the error
       }
     );
+    this.route.navigateByUrl("/admin/profile")
+
   }
 
 }

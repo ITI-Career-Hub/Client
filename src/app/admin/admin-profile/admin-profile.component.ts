@@ -54,7 +54,7 @@ export class AdminProfileComponent implements OnInit {
   serializedDate = new FormControl((new Date()).toISOString());
 
   eventColumns = ['eventName', 'startDate', 'endDate', 'branch'];
-  trackColumns = ['track', 'discipline', 'supervisor', 'students', 'edit'];
+  trackColumns = ['track', 'discipline', 'supervisor', /*'students',*/ 'edit'];
   companyColumns = ['companyName', 'edit'];
 
 

@@ -22,8 +22,8 @@ export class StudentService {
   }
 
 
-  public studentData(username: any, token: string): Observable<any> {
-    const apiUrl = `${api}/student/uasername/${username}`;
+  public studentData(role: any, username: any, token: string): Observable<any> {
+    const apiUrl = `${api}/${role}/username/${username}`;
 
     return this.http.get<any>(apiUrl);
   }

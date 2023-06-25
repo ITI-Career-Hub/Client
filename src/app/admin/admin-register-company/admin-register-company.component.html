@@ -8,18 +8,11 @@
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
                         <input matInput placeholder="Username" name="username" [(ngModel)]="username" required>
-                        <mat-error
-                            *ngIf="myForm.controls['username'].invalid && (myForm.controls['username'].dirty || myForm.controls['username'].touched)">
-                            Username is required.
-                        </mat-error>
+
                     </mat-form-field>
                     <mat-form-field class="w-100">
                         <input matInput placeholder="Email" name="email" [(ngModel)]="email" required email>
-                        <mat-error
-                            *ngIf="myForm.controls['email'].invalid && (myForm.controls['email'].dirty || myForm.controls['email'].touched)">
-                            <span *ngIf="myForm.controls['email'].errors.required">Email is required.</span>
-                            <span *ngIf="myForm.controls['email'].errors.email">Invalid email format.</span>
-                        </mat-error>
+
                     </mat-form-field>
                 </div>
             </div>

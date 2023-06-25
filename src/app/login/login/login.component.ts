@@ -79,13 +79,27 @@ export class LoginComponent implements OnInit {
   storeAccessToken(accessToken: string) {
     // Store the access token securely (e.g., in local storage or state management)
     localStorage.setItem('accessToken', accessToken);
+
     localStorage.setItem('isLoggedin', "true")
+
     const payload = jwtDecode(accessToken);
     localStorage.setItem('role', payload["roles"])
+
     console.log(payload)
     if (true) {
-      this.studentService.studentData(payload["sub"], accessToken).subscribe(response => {
+      this.studentService.studentData(String(payload["roles"]).toLowerCase(), payload["sub"], accessToken).subscribe(response => {
         localStorage.setItem('userInfo', JSON.stringify(response))
+
+        if (payload["roles"] == "ADMIN") {
+          this.navRoute.navigateByUrl("/admin/profile")
+        } else if (payload["roles"] == "STUDENT") {
+          this.navRoute.navigateByUrl("/student/profile")
+        } else if (payload["roles"] == "STAFF") {
+          this.navRoute.navigateByUrl("/staff/profile")
+        } else if (payload["roles"] == "COMPANY") {
+          this.navRoute.navigateByUrl("/company/profile")
+        }
+
       },
         error => {
           console.error('Error exchanging authorization code for access token:', error);
