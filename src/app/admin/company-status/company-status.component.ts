@@ -82,6 +82,7 @@ export class CompanyStatusComponent implements OnInit {
       const eventId = params['eventId'];
       const userData = JSON.parse(localStorage.getItem("userInfo"))
       const companyId = userData["id"];
+      const role = userData["roleName"]
 
       console.log("ID: " + userData["id"])
 
@@ -93,9 +94,10 @@ export class CompanyStatusComponent implements OnInit {
           console.log(error)
         })
 
-      if (eventId && companyId) {
+      if (eventId && companyId && role == "COMPANY") {
+        console.log("EVent: " + eventId + " Comp : " + companyId)
         this.doCompanyAPICallForInterviews(eventId, companyId)
-      } else if (eventId) {
+      } else if (eventId && role == "ADMIN") {
         this.doAdminAPICallForInterviews(eventId)
       }
 
@@ -139,7 +141,7 @@ export class CompanyStatusComponent implements OnInit {
 
   doCompanyAPICallForInterviews(evenId: number, companyId: number) {
     this.appointmentService.getInterviews(evenId, companyId).subscribe((response) => {
-      console.log("Event Response:: ")
+      console.log("111.. Event Response:: ")
       console.log(response)
       // this.companyScheduledData = response
       const allData: any = response
@@ -154,7 +156,7 @@ export class CompanyStatusComponent implements OnInit {
 
   doAdminAPICallForInterviews(eventId: number) {
     this.appointmentService.getAdminInterviews(eventId).subscribe((response) => {
-      console.log("Event Response:: ")
+      console.log("2222..Event Response:: ")
       console.log(response)
       // this.companyScheduledData = response
       const allData: any = response
