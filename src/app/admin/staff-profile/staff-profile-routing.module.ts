@@ -4,7 +4,7 @@ import { StaffProfileComponent } from './staff-profile.component';
 
 const routes: Routes = [
     {
-        path: 'profile',
+        path: '',
         component: StaffProfileComponent
     }
 ];
