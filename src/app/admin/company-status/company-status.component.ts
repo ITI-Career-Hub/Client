@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AddModalComponent } from 'src/app/add-modal/add-modal.component';
 import { AddCompanyModalComponent } from 'src/app/add-track-modal/add-track-modal.component';
 import { CompanyService } from 'src/app/services/company.service';
@@ -12,6 +12,7 @@ import { EventService } from 'src/app/services/event.service';
 import { TrackService } from 'src/app/services/track.service';
 import { DataService } from '../tables/data.service';
 import { SelectionModel } from '@angular/cdk/collections';
+import { AppointemtService } from 'src/app/services/appointemt.service';
 
 
 @Component({
@@ -21,14 +22,18 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 export class CompanyStatusComponent implements OnInit {
 
-  companyScheduledData: MatTableDataSource<Object[]>;
-  companyPendingData: MatTableDataSource<Object[]>;
+  companyScheduledData: any;
+  companyPendingData: any;
   // companyData: MatTableDataSource<Object[]>;
   userInfo: any;
   name: string;
   eventCount: number;
   trackCount: number;
   companyCount: number;
+  eventName: string;
+
+  constructor(private route: ActivatedRoute, private appointmentService: AppointemtService, private router: Router, private readonly trackService: TrackService, private readonly companyService: CompanyService, private readonly dataService: DataService, public dialog: MatDialog, private eventService: EventService) { }
+
 
   openModal(tab: string): void {
     this.dialog.open(AddModalComponent, {
@@ -55,7 +60,7 @@ export class CompanyStatusComponent implements OnInit {
   // trackColumns = ['track', 'discipline', 'supervisor', /*'students',*/ 'edit'];
   // companyColumns = ['companyName', 'edit'];
 
-  companyInterviewsColumns = ['company', 'track', 'date', 'room', 'edit']
+  companyInterviewsColumns = ['track', 'interviewType', 'interviewers', 'date', 'room', 'edit']
 
 
   // dataSource: MatTableDataSource<UserData>;
@@ -63,7 +68,6 @@ export class CompanyStatusComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private router: Router, private readonly trackService: TrackService, private readonly companyService: CompanyService, private readonly dataService: DataService, public dialog: MatDialog, private eventService: EventService) { }
 
 
   redirectToLink() {
@@ -72,6 +76,38 @@ export class CompanyStatusComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    // If it is company
+    this.route.params.subscribe(params => {
+      const evenId = params['eventId'];
+      const userData = JSON.parse(localStorage.getItem("userInfo"))
+      const companyId = userData["id"];
+
+      console.log("ID: " + userData["id"])
+
+      this.eventService.getEvent(evenId).subscribe(
+        (response) => {
+          this.eventName = response["eventName"]
+        },
+        (error) => {
+          console.log(error)
+        })
+
+      this.appointmentService.getInterviews(evenId, companyId).subscribe((response) => {
+        console.log("Event Response:: ")
+        console.log(response)
+        // this.companyScheduledData = response
+        const allData: any = response
+        this.companyScheduledData = allData.filter((data) => data["appointmentDate"] != null)
+        this.companyPendingData = allData.filter((data) => data["appointmentDate"] == null)
+
+      }, (error) => {
+        console.log(error)
+      })
+    });
+
+
+
     // this.dataSource = new MatTableDataSource(this.dataService.create100Users());
     // this.selection = new SelectionModel<UserData>(true, []);
 
@@ -102,35 +138,33 @@ export class CompanyStatusComponent implements OnInit {
     //   console.log(error)
     // })
 
-    this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    this.image = this.userInfo["pictureUrl"]
-    this.name = this.userInfo["username"]
+
   }
 
   ngAfterViewInit() {
-    // this.eventData.paginator = this.paginator;
-    // this.eventData.sort = this.sort;
+    this.companyPendingData.paginator = this.paginator;
+    this.companyPendingData.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
-    // this.eventData.filter = filterValue.trim().toLowerCase();
-    // if (this.eventData.paginator) {
-    //   this.eventData.paginator.firstPage();
-    // }
+    this.companyPendingData.filter = filterValue.trim().toLowerCase();
+    if (this.companyPendingData.paginator) {
+      this.companyPendingData.paginator.firstPage();
+    }
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
-    // const numSelected = this.selection.selected.length;
-    // const numRows = this.eventData.data.length;
-    return true;
+    const numSelected = this.selection.selected.length;
+    const numRows = this.companyPendingData.data.length;
+    return numSelected == numRows;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
-    // this.isAllSelected()
-    //   ? this.selection.clear()
-    //   : this.eventData.data.forEach(row => this.selection.select(row));
+    this.isAllSelected()
+      ? this.selection.clear()
+      : this.companyPendingData.data.forEach(row => this.selection.select(row));
   }
 
 

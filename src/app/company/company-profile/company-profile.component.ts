@@ -12,6 +12,7 @@ import { TrackService } from 'src/app/services/track.service';
 import { AddCompanyModalComponent } from 'src/app/add-track-modal/add-track-modal.component';
 import { DataService } from 'src/app/admin/tables/data.service';
 import { CompanyProfileService } from 'src/app/services/companyProfile.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-profile',
@@ -22,6 +23,7 @@ export class CompanyProfileComponent implements OnInit {
 
   eventData: MatTableDataSource<Object[]>;
   size = 0;
+  userData;
 
   openModal(tab: string): void {
     this.dialog.open(AddModalComponent, {
@@ -55,11 +57,15 @@ export class CompanyProfileComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(public dialog: MatDialog, private eventService: EventService,private companyProfileService:CompanyProfileService) { }
+  constructor(private router: Router, public dialog: MatDialog, private eventService: EventService, private companyProfileService: CompanyProfileService) { }
 
   ngOnInit() {
     // this.dataSource = new MatTableDataSource(this.dataService.create100Users());
     // this.selection = new SelectionModel<UserData>(true, []);
+
+    this.userData = JSON.parse(localStorage.getItem("userInfo"))
+    console.log("ID: " + this.userData["id"])
+
 
     this.companyProfileService.getEvents(6).subscribe((response) => {
       this.eventData = response
@@ -130,6 +136,12 @@ export class CompanyProfileComponent implements OnInit {
     if (file) {
       reader.readAsDataURL(file);
     }
+  }
+
+  onRowClick(row) {
+    console.log(row)
+    // /:evenId/:companyId
+    this.router.navigateByUrl(`/company/status/${row.id}/${this.userData["id"]}`)
   }
 
 

@@ -190,5 +190,11 @@ export class AdminStaffStudentComponent implements OnInit {
 
   }
 
+  addStaff() {
+    this.router.navigateByUrl("/staff/register")
+  }
+  addStudent() {
+    this.router.navigateByUrl("/register")
+  }
 
 }
