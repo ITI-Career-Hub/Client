@@ -12,4 +12,9 @@ export class AppointemtService {
     const urlAPI = `${api}/appointments/event/${eventId}/company/${companyId}`
     return this.http.get(urlAPI)
   }
+
+  public getAdminInterviews(eventId: number) {
+    const urlAPI = `${api}/appointments/event/${eventId}`
+    return this.http.get(urlAPI)
+  }
 }
