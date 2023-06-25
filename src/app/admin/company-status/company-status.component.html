@@ -46,16 +46,26 @@
                         <td mat-cell *matCellDef="let row"> {{row.departmentName }} </td>
                     </ng-container>
 
-
-                    <ng-container matColumnDef="date">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-                        <td mat-cell *matCellDef="let row"> Pending </td>
+                    <ng-container matColumnDef="interviewType">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Interview Type </th>
+                        <td mat-cell *matCellDef="let row"> {{row.interviewType }} </td>
                     </ng-container>
 
 
+                    <ng-container matColumnDef="interviewers">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Interviewers </th>
+                        <td mat-cell *matCellDef="let row">{{ row.interviewers }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                        <td mat-cell *matCellDef="let row" style="color: rgb(220, 174, 23);">
+                            Pending</td>
+                    </ng-container>
+
                     <ng-container matColumnDef="room">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Room </th>
-                        <td mat-cell *matCellDef="let row"> Pending </td>
+                        <td mat-cell *matCellDef="let row" style="color: rgb(220, 174, 23);">Pending </td>
                     </ng-container>
 
                     <ng-container matColumnDef="edit">
@@ -107,7 +117,15 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Track </th>
                         <td mat-cell *matCellDef="let row"> {{row.departmentName}} </td>
                     </ng-container>
+                    <ng-container matColumnDef="interviewType">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Interview Type </th>
+                        <td mat-cell *matCellDef="let row"> {{row.interviewType }} </td>
+                    </ng-container>
 
+                    <ng-container matColumnDef="interviewers">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Interviewers </th>
+                        <td mat-cell *matCellDef="let row">{{ row.interviewers }}</td>
+                    </ng-container>
 
                     <ng-container matColumnDef="date">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>

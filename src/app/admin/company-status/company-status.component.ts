@@ -60,7 +60,7 @@ export class CompanyStatusComponent implements OnInit {
   // trackColumns = ['track', 'discipline', 'supervisor', /*'students',*/ 'edit'];
   // companyColumns = ['companyName', 'edit'];
 
-  companyInterviewsColumns = ['track', 'date', 'room', 'edit']
+  companyInterviewsColumns = ['track', 'interviewType', 'interviewers', 'date', 'room', 'edit']
 
 
   // dataSource: MatTableDataSource<UserData>;
