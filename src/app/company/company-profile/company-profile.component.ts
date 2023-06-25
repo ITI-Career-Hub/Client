@@ -24,6 +24,7 @@ export class CompanyProfileComponent implements OnInit {
   eventData: MatTableDataSource<Object[]>;
   size = 0;
   userData;
+  companyName;
 
   openModal(tab: string): void {
     this.dialog.open(AddModalComponent, {
@@ -66,12 +67,13 @@ export class CompanyProfileComponent implements OnInit {
     this.userData = JSON.parse(localStorage.getItem("userInfo"))
     console.log("ID: " + this.userData["id"])
 
-
     this.companyProfileService.getEvents(6).subscribe((response) => {
       this.eventData = response
       this.size = response.length;
       this.eventData = new MatTableDataSource(response);
       this.selection = new SelectionModel<Object[]>(true, []);
+      this.image = this.userData["pictureUrl"];
+      this.companyName = this.userData["companyName"]
       console.log(this.eventData)
     }, (error) => {
       console.log(error)
