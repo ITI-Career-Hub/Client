@@ -5,6 +5,7 @@ import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { getDownloadURL } from '@firebase/storage';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { StaffEditProfileService } from 'src/app/services/staffEditProfile.service';
 
 @Component({
   selector: 'app-staff-edit-profile',
@@ -22,7 +23,7 @@ export class StaffEditProfileComponent implements OnInit {
 
   user = JSON.parse(localStorage.getItem('userInfo'));
 
-  constructor( private router: Router, private route: ActivatedRoute, private staffService: StaffService, private readonly storage: Storage) { }
+  constructor(private staffEditProfileService:StaffEditProfileService ,private router: Router, private route: ActivatedRoute, private staffService: StaffService, private readonly storage: Storage) { }
 
   ngOnInit(): void {
     console.log(this.user);
@@ -163,7 +164,7 @@ export class StaffEditProfileComponent implements OnInit {
     const reader = new FileReader();
 
     reader.onload = (e: any) => {
-      this.image = e.target.result;
+      this.user.pictureUrl = e.target.result;
     };
 
     if (file) {
@@ -172,5 +173,29 @@ export class StaffEditProfileComponent implements OnInit {
 
   }
 
+  async updateStaff(imageInput){
+    const imgLink = await this.uploadFile(imageInput);
 
+    let data = {
+      "id":this.user.id,
+      "firstName":  this.user.firstName,
+      "lastName":  this.user.lastName,
+      "pictureUrl":  imgLink
+    };
+
+
+    console.log(data);
+
+    this.staffEditProfileService.updateStaff(data).subscribe(
+      (response) => {
+        console.log('valid', response);
+        // this.user.pictureUrl = 'https://firebasestorage.googleapis.com/v0/b/fir-645ac.appspot.com/o/man.png?alt=media&token=89220f00-f291-4dd2-9f0c-48a172bba6c4';
+        localStorage.setItem('userInfo', JSON.stringify(response));
+        alert('saved');
+      },
+      (error) => {
+        console.error('Error ', error);
+      }
+    );
+  }
 }

@@ -1,14 +1,16 @@
 <div class="login-page">
     <div class="content px20">
-        <form class="login-form" #myForm="ngForm" (ngSubmit)="createStaff(imageInput)">
+        <form class="login-form" #myForm="ngForm" (ngSubmit)="updateStaff(imageInput)">
             <div class="text-center">
-                <h2 class="app-name">Complete your profile</h2>
+                <h2 class="app-name">Edit your profile</h2>
             </div>
             <div fxLayout="row">
                 <div fxFlexFill>
 
-                    <div class="avatar" (click)="openImagePicker()">
-                        <img *ngIf="image" [src]="image" alt="Avatar" class="avatar-image" />
+                    <div [class.avatar]="!user.pictureUrl" (click)="openImagePicker()"  style="    display: flex;
+                    flex-flow: column;
+                    align-items: center;">
+                        <img *ngIf="user.pictureUrl" [src]="user.pictureUrl" alt="Avatar" class="avatar-image" />
                         <div class="avatar-placeholder" *ngIf="!image">
                             <span class="avatar-placeholder-text">Choose Image</span>
                         </div>
@@ -17,7 +19,7 @@
                     </div>
 
                     <mat-form-field class="w-100">
-                        <input matInput name="email" [(ngModel)]="email" placeholder="Email" disabled type="email"
+                        <input matInput name="email" [(ngModel)]="user.email" placeholder="Email" disabled type="email"
                             value="example@gmail.com">
                     </mat-form-field>
 
@@ -29,10 +31,10 @@
                         <input matInput type="password" placeholder="Confirm password">
                     </mat-form-field> -->
                     <mat-form-field class="w-100">
-                        <input name="firstName" [(ngModel)]="firstName" matInput placeholder="First Name">
+                        <input name="firstName" [(ngModel)]="user.firstName" matInput placeholder="First Name">
                     </mat-form-field>
                     <mat-form-field class="w-100">
-                        <input matInput name="lastName" [(ngModel)]="lastName" placeholder="Last Name">
+                        <input matInput name="lastName" [(ngModel)]="user.lastName" placeholder="Last Name">
                     </mat-form-field>
                     <div *ngIf="showSpinner" class="spinner-container">
                         <mat-spinner></mat-spinner>
@@ -42,7 +44,7 @@
 
             <div fxLayout="row">
                 <div fxFlexFill>
-                    <button type="submit" mat-raised-button color="primary" class="w-100">Save</button>
+                    <button type="submit" mat-raised-button color="primary" class="w-100">update</button>
                 </div>
             </div>
 
