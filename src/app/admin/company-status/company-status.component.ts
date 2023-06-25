@@ -1,31 +1,29 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AddModalComponent } from '../../add-modal/add-modal.component';
-import { UserData, DataService } from '../tables/data.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { SelectionModel } from '@angular/cdk/collections';
-import { FormControl } from '@angular/forms';
-import { EventService } from 'src/app/services/event.service';
-import { CompanyService } from 'src/app/services/company.service';
-import { TrackService } from 'src/app/services/track.service';
+import { Router } from '@angular/router';
+import { AddModalComponent } from 'src/app/add-modal/add-modal.component';
 import { AddCompanyModalComponent } from 'src/app/add-track-modal/add-track-modal.component';
-import { Route, Router } from '@angular/router';
-
-
-
+import { CompanyService } from 'src/app/services/company.service';
+import { EventService } from 'src/app/services/event.service';
+import { TrackService } from 'src/app/services/track.service';
+import { DataService } from '../tables/data.service';
+import { SelectionModel } from '@angular/cdk/collections';
 
 
 @Component({
-  selector: 'app-admin-profile',
-  templateUrl: './admin-profile.component.html',
-  styleUrls: ['./admin-profile.component.scss']
+  selector: 'app-company-status',
+  templateUrl: './company-status.component.html',
+  styleUrls: ['./company-status.component.scss']
 })
-export class AdminProfileComponent implements OnInit {
-  eventData: MatTableDataSource<Object[]>;
-  trackData: MatTableDataSource<Object[]>;
-  companyData: MatTableDataSource<Object[]>;
+export class CompanyStatusComponent implements OnInit {
+
+  companyScheduledData: MatTableDataSource<Object[]>;
+  companyPendingData: MatTableDataSource<Object[]>;
+  // companyData: MatTableDataSource<Object[]>;
   userInfo: any;
   name: string;
   eventCount: number;
@@ -53,10 +51,11 @@ export class AdminProfileComponent implements OnInit {
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
 
-  eventColumns = ['eventName', 'startDate', 'endDate', 'branch'];
-  trackColumns = ['track', 'discipline', 'supervisor', /*'students',*/ 'edit'];
-  companyColumns = ['companyName', 'edit'];
+  // eventColumns = ['eventName', 'startDate', 'endDate', 'branch'];
+  // trackColumns = ['track', 'discipline', 'supervisor', /*'students',*/ 'edit'];
+  // companyColumns = ['companyName', 'edit'];
 
+  companyInterviewsColumns = ['company', 'track', 'date', 'room', 'edit']
 
 
   // dataSource: MatTableDataSource<UserData>;
@@ -72,42 +71,36 @@ export class AdminProfileComponent implements OnInit {
     this.router.navigateByUrl(link);
   }
 
-  onRowClick(row: any) {
-    const clickedRowId = row.id; // Replace 'id' with the actual property name containing the ID
-    this.router.navigateByUrl(`/track/${clickedRowId}`)
-  }
-
-
   ngOnInit() {
     // this.dataSource = new MatTableDataSource(this.dataService.create100Users());
     // this.selection = new SelectionModel<UserData>(true, []);
 
-    this.eventService.getEvents().subscribe((response) => {
-      this.eventData = response
-      this.eventData = new MatTableDataSource(response);
-      this.selection = new SelectionModel<Object[]>(true, []);
-      console.log(this.eventData)
-      this.eventCount = response.length
-    }, (error) => {
-      console.log(error)
-    })
+    // this.eventService.getEvents().subscribe((response) => {
+    //   this.eventData = response
+    //   this.eventData = new MatTableDataSource(response);
+    //   this.selection = new SelectionModel<Object[]>(true, []);
+    //   console.log(this.eventData)
+    //   this.eventCount = response.length
+    // }, (error) => {
+    //   console.log(error)
+    // })
 
-    this.companyService.getAllCompanies().subscribe((response) => {
-      this.companyData = response
-      console.log(this.companyData)
-      this.companyCount = response.length
-    }, (error) => {
-      console.log(error)
-    })
+    // this.companyService.getAllCompanies().subscribe((response) => {
+    //   this.companyData = response
+    //   console.log(this.companyData)
+    //   this.companyCount = response.length
+    // }, (error) => {
+    //   console.log(error)
+    // })
 
 
-    this.trackService.getEvents().subscribe((response) => {
-      this.trackData = response
-      console.log(this.trackData)
-      this.trackCount = response.length
-    }, (error) => {
-      console.log(error)
-    })
+    // this.trackService.getEvents().subscribe((response) => {
+    //   this.trackData = response
+    //   console.log(this.trackData)
+    //   this.trackCount = response.length
+    // }, (error) => {
+    //   console.log(error)
+    // })
 
     this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
     this.image = this.userInfo["pictureUrl"]
@@ -115,29 +108,29 @@ export class AdminProfileComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.eventData.paginator = this.paginator;
-    this.eventData.sort = this.sort;
+    // this.eventData.paginator = this.paginator;
+    // this.eventData.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
-    this.eventData.filter = filterValue.trim().toLowerCase();
-    if (this.eventData.paginator) {
-      this.eventData.paginator.firstPage();
-    }
+    // this.eventData.filter = filterValue.trim().toLowerCase();
+    // if (this.eventData.paginator) {
+    //   this.eventData.paginator.firstPage();
+    // }
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.eventData.data.length;
-    return numSelected === numRows;
+    // const numSelected = this.selection.selected.length;
+    // const numRows = this.eventData.data.length;
+    return true;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
-    this.isAllSelected()
-      ? this.selection.clear()
-      : this.eventData.data.forEach(row => this.selection.select(row));
+    // this.isAllSelected()
+    //   ? this.selection.clear()
+    //   : this.eventData.data.forEach(row => this.selection.select(row));
   }
 
 
@@ -173,9 +166,5 @@ export class AdminProfileComponent implements OnInit {
     }
 
   }
-
-
-
-
 
 }

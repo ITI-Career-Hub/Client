@@ -16,7 +16,6 @@ export class CompanyService {
     return this.httpClient.post<any>(apiUrl, token);
   }
 
-
   registerFullCompanyInfo(token: string, data: any): Observable<any> {
     const urlAPI = `${api}/company/register?token=${token}`;
     return this.httpClient.post(urlAPI, data);
@@ -31,5 +30,9 @@ export class CompanyService {
     const urlAPI = `${api}/company`;
     return this.httpClient.get(urlAPI);
   }
+
+  getPendingCompanyInterviews() { }
+
+  getScheduledCompanyInterviews() { }
 
 }

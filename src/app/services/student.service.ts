@@ -23,8 +23,19 @@ export class StudentService {
 
 
   public studentData(role: any, username: any, token: string): Observable<any> {
-    const apiUrl = `${api}/${role}/username/${username}`;
+    let apiUrl;
+    if (role == "admin") {
+      apiUrl = `${api}/staff/username/${username}`;
+    }
+    else {
+      apiUrl = `${api}/${role}/username/${username}`;
+    }
+    return this.http.get<any>(apiUrl);
+  }
 
+
+  public getStudentsInDepartment(id: number): Observable<any> {
+    const apiUrl = `${api}/department/${id}/student`
     return this.http.get<any>(apiUrl);
   }
 
