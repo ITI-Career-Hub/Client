@@ -14,7 +14,26 @@
 <div style="margin: 10px 50px">
 
     <div class="row">
-        <div class="col-2">
+
+        <div class="profile-info">
+            <div class="avatar" (click)="openImagePicker()">
+                <img *ngIf="image" [src]="image" alt="Avatar" class="avatar-image" />
+                <div class="avatar-placeholder" *ngIf="!image">
+                    <span class="avatar-placeholder-text">Choose Image</span>
+                </div>
+                <input type="file" accept="image/*" style="display: none" (change)="handleImageChange($event)"
+                    #imageInput />
+            </div>
+            <div class="admin-name">
+                {{name}}
+            </div>
+            <!-- <div class="info">
+                Hello, I'm ITI ADMIN
+            </div> -->
+            <button class="edit-profile-button">Edit Profile</button>
+        </div>
+
+        <!-- <div class="col-2">
             <div class="test">
                 <div class="image"></div>
                 <p class="name">{{user.username}}</p>
@@ -27,7 +46,7 @@
                 <div>{{interviews.length}}</div>
             </div>
 
-        </div>
+        </div> -->
 
 
         <div class="col-8 ms-5">
@@ -47,9 +66,10 @@
                                         alt="">
                                 </div>
                                 <div class="m-2" style="padding-left: 25px;">
-                                    <p  style="margin: -1px;">{{item.appointmentCompanyCompanyName}}</p>
-                                    <p class="text"  style="margin: -1px;">{{item.appointmentInterviewType}} Interview</p>
-                                    <p class="text"  style="margin: -1px;">{{item.appointmentRoomName}}</p>
+                                    <p style="margin: -1px;">{{item.appointmentCompanyCompanyName}}</p>
+                                    <p class="text" style="margin: -1px;">{{item.appointmentInterviewType}} Interview
+                                    </p>
+                                    <p class="text" style="margin: -1px;">{{item.appointmentRoomName}}</p>
                                 </div>
                             </div>
 
@@ -70,9 +90,10 @@
                                             alt="">
                                     </div>
                                     <div class="m-2" style="padding-left: 25px;">
-                                        <p  style="margin: -1px;">{{item.appointmentCompanyCompanyName}}</p>
-                                        <p  style="margin: -1px;" class="text">{{item.appointmentInterviewType}} Interview</p>
-                                        <p  style="margin: -1px;" class="text">{{item.appointmentRoomName}}</p>
+                                        <p style="margin: -1px;">{{item.appointmentCompanyCompanyName}}</p>
+                                        <p style="margin: -1px;" class="text">{{item.appointmentInterviewType}}
+                                            Interview</p>
+                                        <p style="margin: -1px;" class="text">{{item.appointmentRoomName}}</p>
                                     </div>
                                 </div>
 
@@ -82,7 +103,7 @@
                     </div>
                 </mat-tab>
                 <mat-tab label="Done">
-                    
+
                     <div class="row w-100" *ngFor="let item of interviews">
                         <div *ngIf="item.attendanceStatus == 'COMPLETED' ">
                             <div class="col-2">
@@ -97,7 +118,8 @@
                                     </div>
                                     <div class="m-2" style="padding-left:25px">
                                         <p style="margin: -1px;">{{item.appointmentCompanyCompanyName}}</p>
-                                        <p class="text" style="margin: -1px;">{{item.appointmentInterviewType}} Interview</p>
+                                        <p class="text" style="margin: -1px;">{{item.appointmentInterviewType}}
+                                            Interview</p>
                                         <p class="text" style="margin: -1px;">{{item.appointmentRoomName}}</p>
                                     </div>
                                 </div>
