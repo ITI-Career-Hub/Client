@@ -79,13 +79,14 @@ export class CompanyStatusComponent implements OnInit {
 
     // If it is company
     this.route.params.subscribe(params => {
-      const evenId = params['eventId'];
+      const eventId = params['eventId'];
       const userData = JSON.parse(localStorage.getItem("userInfo"))
       const companyId = userData["id"];
+      const role = userData["roleName"]
 
       console.log("ID: " + userData["id"])
 
-      this.eventService.getEvent(evenId).subscribe(
+      this.eventService.getEvent(eventId).subscribe(
         (response) => {
           this.eventName = response["eventName"]
         },
@@ -93,17 +94,17 @@ export class CompanyStatusComponent implements OnInit {
           console.log(error)
         })
 
-      this.appointmentService.getInterviews(evenId, companyId).subscribe((response) => {
-        console.log("Event Response:: ")
-        console.log(response)
-        // this.companyScheduledData = response
-        const allData: any = response
-        this.companyScheduledData = allData.filter((data) => data["appointmentDate"] != null)
-        this.companyPendingData = allData.filter((data) => data["appointmentDate"] == null)
+      if (eventId && companyId && role == "COMPANY") {
+        console.log("EVent: " + eventId + " Comp : " + companyId)
+        this.doCompanyAPICallForInterviews(eventId, companyId)
+      } else if (eventId && role == "ADMIN") {
+        this.doAdminAPICallForInterviews(eventId)
+      }
+      else if (eventId && role == "STAFF") {
+        const departmentId = userData["departmentId"]
+        this.doStaffAPICallForInterviews(eventId, departmentId)
+      }
 
-      }, (error) => {
-        console.log(error)
-      })
     });
 
 
@@ -139,6 +140,51 @@ export class CompanyStatusComponent implements OnInit {
     // })
 
 
+  }
+
+
+  doCompanyAPICallForInterviews(evenId: number, companyId: number) {
+    this.appointmentService.getInterviews(evenId, companyId).subscribe((response) => {
+      console.log("111.. Event Response:: ")
+      console.log(response)
+      // this.companyScheduledData = response
+      const allData: any = response
+      this.companyScheduledData = allData.filter((data) => data["appointmentDate"] != null)
+      this.companyPendingData = allData.filter((data) => data["appointmentDate"] == null)
+
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
+
+  doAdminAPICallForInterviews(eventId: number) {
+    this.appointmentService.getAdminInterviews(eventId).subscribe((response) => {
+      console.log("2222..Event Response:: ")
+      console.log(response)
+      // this.companyScheduledData = response
+      const allData: any = response
+      this.companyScheduledData = allData.filter((data) => data["appointmentDate"] != null)
+      this.companyPendingData = allData.filter((data) => data["appointmentDate"] == null)
+
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
+
+  doStaffAPICallForInterviews(eventId: number, departmentId: number) {
+    this.appointmentService.getStaffInterviews(eventId, departmentId).subscribe((response) => {
+      console.log("3333..Event Response:: ")
+      console.log(response)
+      // this.companyScheduledData = response
+      const allData: any = response
+      this.companyScheduledData = allData.filter((data) => data["appointmentDate"] != null)
+      this.companyPendingData = allData.filter((data) => data["appointmentDate"] == null)
+
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   ngAfterViewInit() {

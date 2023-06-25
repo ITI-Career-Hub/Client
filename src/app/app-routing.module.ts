@@ -93,6 +93,11 @@ const routes: Routes = [
       import('./admin/company-status/company-status.module').then((m) => m.CompanyStatusModule),
   },
   {
+    path: 'company/status/:eventId',
+    loadChildren: () =>
+      import('./admin/company-status/company-status.module').then((m) => m.CompanyStatusModule),
+  },
+  {
     path: 'track/:id',
     loadChildren: () =>
       import('./admin/admin-staff-student/admin-staff-student.module').then((m) => m.AdminStaffStudentModule),

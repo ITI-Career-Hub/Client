@@ -174,7 +174,9 @@ export class AdminProfileComponent implements OnInit {
 
   }
 
-
+  onEventRowClick(row: any) {
+    this.router.navigateByUrl(`/company/status/${row.id}`)
+  }
 
 
 
