@@ -23,9 +23,8 @@
             </ng-template>
             <div class="tab-content">
                 <div class="table-header">
-                    <button style="background-color: #2773FF; color: #F7F9FB;" mat-button
-                        (click)="openModal('event')">Add
-                        Event</button>
+                    <button style="background-color: #2773FF; color: #F7F9FB;" mat-button (click)="addStaff()">Add
+                        Staff</button>
                 </div>
                 <table mat-table [dataSource]="staffData" matSort class="w-100">
                     <ng-container matColumnDef="select">
@@ -92,9 +91,8 @@
             </ng-template>
             <div class="tab-content">
                 <div class="table-header">
-                    <button style="background-color: #2773FF; color: #F7F9FB;" mat-button
-                        (click)="openCompanyModal('event')">Add
-                        Add Track</button>
+                    <button style="background-color: #2773FF; color: #F7F9FB;" mat-button (click)="addStudent()">Add
+                        Student</button>
                 </div>
                 <table mat-table [dataSource]="studentsData" matSort class="w-100">
 

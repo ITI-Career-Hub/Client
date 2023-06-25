@@ -26,4 +26,9 @@ export class EventService {
     return this.httpClient.post(urlAPI, data);
   }
 
+  getEvent(id: number): Observable<any> {
+    const urlAPI = `${api}/event/${id}`;
+    return this.httpClient.get(urlAPI);
+  }
+
 }

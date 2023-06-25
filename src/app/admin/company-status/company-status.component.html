@@ -10,11 +10,8 @@
             Career<br>Hub</div>
     </div>
 </div>
+<h2 style="margin-left: 20px;">{{eventName}}</h2>
 <div class="layout-container">
-
-
-    <h2>Career Expo</h2>
-
 
     <mat-tab-group class="tab-group">
         <mat-tab label="Event">
@@ -43,25 +40,22 @@
                             </mat-checkbox>
                         </td>
                     </ng-container>
-                    <ng-container matColumnDef="company">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Event Name </th>
-                        <td mat-cell *matCellDef="let row"> {{row.eventName}} </td>
-                    </ng-container>
 
                     <ng-container matColumnDef="track">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </th>
-                        <td mat-cell *matCellDef="let row"> {{row.startDate}} </td>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Track </th>
+                        <td mat-cell *matCellDef="let row"> {{row.departmentName }} </td>
                     </ng-container>
 
+
                     <ng-container matColumnDef="date">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> End Date </th>
-                        <td mat-cell *matCellDef="let row"> {{row.endDate}} </td>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                        <td mat-cell *matCellDef="let row"> Pending </td>
                     </ng-container>
 
 
                     <ng-container matColumnDef="room">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Branch </th>
-                        <td mat-cell *matCellDef="let row"> {{ row.state }}, {{ row.city }}, {{ row.street }} </td>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Room </th>
+                        <td mat-cell *matCellDef="let row"> Pending </td>
                     </ng-container>
 
                     <ng-container matColumnDef="edit">
@@ -89,9 +83,9 @@
             </ng-template>
             <div class="tab-content">
                 <div class="table-header">
-                    <button style="background-color: #2773FF; color: #F7F9FB;" mat-button
+                    <!-- <button style="background-color: #2773FF; color: #F7F9FB;" mat-button
                         (click)="openCompanyModal('event')">Add
-                        Add Track</button>
+                        Add Track</button> -->
                 </div>
                 <table mat-table [dataSource]="companyScheduledData" matSort class="w-100">
                     <ng-container matColumnDef="select">
@@ -108,19 +102,22 @@
                         </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="company">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Track Name </th>
+
+                    <ng-container matColumnDef="track">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Track </th>
                         <td mat-cell *matCellDef="let row"> {{row.departmentName}} </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="track">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Discipline </th>
-                        <td mat-cell *matCellDef="let row"> {{row.discipline}} </td>
-                    </ng-container>
 
                     <ng-container matColumnDef="date">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Supervisor </th>
-                        <td mat-cell *matCellDef="let row"> {{row.managerName}} </td>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                        <td mat-cell *matCellDef="let row"> {{row.appointmentDate}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="room">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Room </th>
+                        <td mat-cell *matCellDef="let row"> {{ row.roomName }} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="edit">
