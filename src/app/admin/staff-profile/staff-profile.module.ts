@@ -15,6 +15,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { StaffProfileRoutingModule } from './staff-profile-routing.module';
+import { NavModule } from 'src/app/nav/nav.module';
 
 
 
@@ -33,7 +34,7 @@ import { StaffProfileRoutingModule } from './staff-profile-routing.module';
     MatInputModule,
     MatCheckboxModule,
     MatTabsModule,
-    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule, StaffProfileRoutingModule
+    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule, StaffProfileRoutingModule,NavModule
   ]
 })
 export class StaffProfileModule { }

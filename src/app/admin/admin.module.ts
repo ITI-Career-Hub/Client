@@ -29,6 +29,7 @@ import { TablesRoutingModule } from './tables/tables-routing.module';
 import { CompanyProfileModule } from './company-profile/company-profile.module';
 import { CompanyStatusComponent } from './company-status/company-status.component';
 import { AdminStaffStudentComponent } from './admin-staff-student/admin-staff-student.component';
+import { NavModule } from '../nav/nav.module';
 
 
 
@@ -55,7 +56,7 @@ import { AdminStaffStudentComponent } from './admin-staff-student/admin-staff-st
     MatSortModule,
     MatInputModule,
     MatCheckboxModule,
-    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule, CompanyProfileModule
+    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule, CompanyProfileModule,NavModule
   ],
   declarations: [LayoutComponent, TopNavComponent, SideNavComponent, AdminProfileComponent, CompanyStatusComponent, AdminStaffStudentComponent]
 })

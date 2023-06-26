@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { MatTabsModule } from '@angular/material/tabs';
+import { NavModule } from '../nav/nav.module';
 
 
 
@@ -13,7 +14,8 @@ import { MatTabsModule } from '@angular/material/tabs';
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    MatTabsModule
+    MatTabsModule,
+    NavModule
   ]
 })
 export class ProfileModule { }

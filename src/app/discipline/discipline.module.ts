@@ -12,6 +12,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { NavModule } from '../nav/nav.module';
 
 
 
@@ -32,6 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelectModule,
     MatChipsModule,
     MatIconModule,
+    NavModule
   ]
 })
 export class DisciplineModule { }

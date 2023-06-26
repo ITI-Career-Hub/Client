@@ -43,6 +43,7 @@ import { FormsModule } from '@angular/forms';
 import { AddCompanyModalComponent } from './add-track-modal/add-track-modal.component';
 import { MatTableModule } from '@angular/material/table';
 import { DataService } from './admin/tables/data.service';
+import { NavModule } from './nav/nav.module';
 
 @NgModule({
   declarations: [AppComponent, ExamplePdfViewerComponent, AddModalComponent, AddCompanyModalComponent],
@@ -71,7 +72,8 @@ import { DataService } from './admin/tables/data.service';
     MatChipsModule,
     FormsModule,
     MatTableModule,
-    MatTabsModule
+    MatTabsModule,
+    NavModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

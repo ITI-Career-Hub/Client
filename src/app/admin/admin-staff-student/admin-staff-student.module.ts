@@ -27,7 +27,7 @@ import { TablesRoutingModule } from '../tables/tables-routing.module';
     MatSortModule,
     MatInputModule,
     MatCheckboxModule,
-    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule
+    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule,
   ]
 })
 export class AdminStaffStudentModule { }

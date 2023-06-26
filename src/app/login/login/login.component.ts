@@ -89,6 +89,7 @@ export class LoginComponent implements OnInit {
     if (true) {
       this.studentService.studentData(String(payload["roles"]).toLowerCase(), payload["sub"], accessToken).subscribe(response => {
         localStorage.setItem('userInfo', JSON.stringify(response))
+        console.log('jg');
 
         if (payload["roles"] == "ADMIN") {
           this.navRoute.navigateByUrl("/admin/profile")

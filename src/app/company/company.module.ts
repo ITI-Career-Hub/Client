@@ -18,13 +18,14 @@ import { TablesRoutingModule } from '../admin/tables/tables-routing.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DataService } from '../admin/tables/data.service';
 import { CompanyProfileRoutingModule } from './company-profile/company-profile-routing.module';
+import { NavModule } from '../nav/nav.module';
 
 
 
 @NgModule({
   declarations: [
     CompanyAttendanceComponent,
-    CompanyProfileComponent
+    CompanyProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -37,7 +38,7 @@ import { CompanyProfileRoutingModule } from './company-profile/company-profile-r
     MatInputModule,
     MatCheckboxModule,
     MatTabsModule,
-    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule, TablesRoutingModule, CompanyProfileRoutingModule
+    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule, TablesRoutingModule, CompanyProfileRoutingModule,NavModule
   ],
   providers: [DataService]
 })

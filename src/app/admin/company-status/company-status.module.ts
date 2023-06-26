@@ -12,6 +12,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { TablesRoutingModule } from '../tables/tables-routing.module';
+import { NavModule } from 'src/app/nav/nav.module';
 
 
 
@@ -28,7 +29,7 @@ import { TablesRoutingModule } from '../tables/tables-routing.module';
     MatSortModule,
     MatInputModule,
     MatCheckboxModule,
-    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule
+    MatButtonModule, MatDividerModule, MatIconModule, MatCardModule,NavModule
   ]
 })
 export class CompanyStatusModule { }
