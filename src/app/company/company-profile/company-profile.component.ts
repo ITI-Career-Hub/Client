@@ -67,7 +67,7 @@ export class CompanyProfileComponent implements OnInit {
     this.userData = JSON.parse(localStorage.getItem("userInfo"))
     console.log("ID: " + this.userData["id"])
 
-    this.companyProfileService.getEvents(6).subscribe((response) => {
+    this.companyProfileService.getEvents(this.userData["id"]).subscribe((response) => {
       this.eventData = response
       this.size = response.length;
       this.eventData = new MatTableDataSource(response);
