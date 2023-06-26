@@ -44,9 +44,10 @@ import { AddCompanyModalComponent } from './add-track-modal/add-track-modal.comp
 import { MatTableModule } from '@angular/material/table';
 import { DataService } from './admin/tables/data.service';
 import { NavModule } from './nav/nav.module';
+import { ApproveInterviewComponent } from './approve-interview/approve-interview.component';
 
 @NgModule({
-  declarations: [AppComponent, ExamplePdfViewerComponent, AddModalComponent, AddCompanyModalComponent],
+  declarations: [AppComponent, ExamplePdfViewerComponent, AddModalComponent, AddCompanyModalComponent, ApproveInterviewComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

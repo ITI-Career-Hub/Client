@@ -88,6 +88,7 @@ export class CompanyOwnerRegisterComponent implements OnInit {
       (response) => {
         console.log('valid token', response);
         // Handle the response from the server
+        this.router.navigateByUrl("/login")
       },
       (error) => {
         this.route

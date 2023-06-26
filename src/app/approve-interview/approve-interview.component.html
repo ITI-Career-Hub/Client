@@ -1,0 +1,22 @@
+<h2 class="event-header">Add New Event</h2>
+
+<mat-form-field>
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" (dateInput)="getAvailableRooms($event.target.value)">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<br>
+<br>
+
+<label for="room">Choose Room</label>
+<select class="form-select" name="room" (change)="handelRoom($event.target.value)" [(ngModel)]="formData.room">
+    <option value="{{item.id}}" *ngFor="let item of rooms">{{item.name}}</option>
+</select>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button color="primary" [mat-dialog-close]="true" (click)="saveEvent()">Approve</button>
+</mat-dialog-actions>

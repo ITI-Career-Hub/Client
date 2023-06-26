@@ -18,7 +18,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'interviews',
+    path: 'interviews/:eventId',
     component: CompanyAttendanceComponent,
     loadChildren: () =>
       import('./company/company.module').then((m) => m.CompanyModule),
@@ -81,13 +81,13 @@ const routes: Routes = [
     path: 'company/edit',
     loadChildren: () =>
       import('./admin/company-edit-profile/company-edit-profile.module').then((m) => m.CompanyEditProfileModule),
-  } ,
+  },
   {
     path: 'staff/edit',
     loadChildren: () =>
       import('./admin/staff-edit-profile/staff-edit-profile.module').then((m) => m.StaffEditProfileModule),
-  } 
-  ,{
+  }
+  , {
     path: 'company/status/:eventId/:companyId',
     loadChildren: () =>
       import('./admin/company-status/company-status.module').then((m) => m.CompanyStatusModule),
@@ -123,7 +123,7 @@ const routes: Routes = [
 
   {
 
-    path: 'discipline',
+    path: 'discipline/:eventId',
     component: DisciplineComponent,
     loadChildren: () =>
       import('./discipline/discipline.module').then((m) => m.DisciplineModule),

@@ -45,12 +45,12 @@
                 #imageInput />
         </div>
         <div class="admin-name">
-            staff
+            {{firstName}} {{lastName}}
         </div>
-        <div class="info">
+        <!-- <div class="info">
             Hello, I'm ITI staff
-        </div>
-        <button class="edit-profile-button">Edit Profile</button>
+        </div> -->
+        <button (click)="edit()" class="edit-profile-button">Edit Profile</button>
     </div>
 
 

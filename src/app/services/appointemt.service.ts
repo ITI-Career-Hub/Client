@@ -22,4 +22,10 @@ export class AppointemtService {
     const urlAPI = `${api}/department/${departmentId}/event/${eventId}/appointment`
     return this.http.get(urlAPI)
   }
+
+  public approveInterview(interviewId: any, data: any) {
+    const urlAPI = `${api}/appointments/${interviewId}/approve`
+    return this.http.put(urlAPI, data)
+
+  }
 }

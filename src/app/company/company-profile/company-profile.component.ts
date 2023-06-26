@@ -147,4 +147,9 @@ export class CompanyProfileComponent implements OnInit {
   }
 
 
+  edit() {
+    this.router.navigateByUrl("/company/edit")
+  }
+
+
 }
