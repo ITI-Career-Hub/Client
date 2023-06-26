@@ -33,6 +33,23 @@ export class LoginComponent implements OnInit {
         this.exchangeCodeForToken(code);
       }
     });
+
+    let x = localStorage.getItem('role');
+    if(x){
+      if (x == "ADMIN") {
+        this.navRoute.navigateByUrl("/admin/profile")
+      } else if (x == "STUDENT") {
+        this.navRoute.navigateByUrl("/student/profile")
+      } else if (x == "STAFF") {
+        this.navRoute.navigateByUrl("/staff/profile")
+      } else if (x == "COMPANY") {
+        this.navRoute.navigateByUrl("/company/profile")
+      }
+
+    }
+
+
+
   }
 
   exchangeCodeForToken(code: string) {

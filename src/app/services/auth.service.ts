@@ -15,11 +15,11 @@ export class AuthService {
     const name = cookieName + "=";
     const decodedCookie = decodeURIComponent(document.cookie);
 
-    console.log('decodedCookie',document.cookie)
+    console.log('decodedCookie', document.cookie)
 
 
     const cookieArray = decodedCookie.split(";");
-    console.log('cookieArray',cookieArray)
+    console.log('cookieArray', cookieArray)
 
     for (let i = 0; i < cookieArray.length; i++) {
       let cookie = cookieArray[i];
@@ -36,8 +36,7 @@ export class AuthService {
 
   public async logout() {
     const apiUrl = `${authAPI}/logout`;
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('accessToken')}`);
-    headers.set('Cookie', `JSESSIONID=${this.getCookie('JSESSIONID')}`);
+    let headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('accessToken')}`).set('Cookie', `JSESSIONID=${this.getCookie('JSESSIONID')}`);
     console.log(this.getCookie('JSESSIONID'))
     await this.httpClient.post<any>(apiUrl, {}, { headers }).subscribe(
       (response) => {
