@@ -85,6 +85,8 @@ export class StudentOwnRegisterComponent implements OnInit {
       (response) => {
         console.log('valid token', response);
         // Handle the response from the server
+        this.router.navigateByUrl("/login")
+
       },
       (error) => {
         console.error('Error making POST request', error);

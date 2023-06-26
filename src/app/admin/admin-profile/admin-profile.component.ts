@@ -179,5 +179,8 @@ export class AdminProfileComponent implements OnInit {
   }
 
 
+  edit() {
+    this.router.navigateByUrl("/staff/edit")
+  }
 
 }

@@ -73,9 +73,10 @@
                             </div>
                         </div> -->
 
-                        <div  style="display: flex; justify-content: space-between;align-items: center;width: 95%;" *ngFor="let item of students"  (click)="chooseStudent(item)">
+                        <div style="display: flex; justify-content: space-between;align-items: center;width: 95%;"
+                            *ngFor="let item of students" (click)="chooseStudent(item)">
                             <div class="col" style="width: 95%;">
-                                <div class="interview-box m-2" >
+                                <div class="interview-box m-2">
                                     <div>
                                         <img [src]="item.pictureUrl" class="user-image" width="44" height="44"
                                             alt="user image">
@@ -89,8 +90,8 @@
                                 <div class="form-check form-switch">
                                     <!-- <input class="form-check-input" name="selectedStudents" type="checkbox" (change)="updateUuserStatus(item)"> -->
                                     <input class="form-check-input" [id]="item.id" name="selectedStudents"
-                                    type="checkbox" [value]="item.id"
-                                    (change)="updateSelectedInterests($event.target.checked, item.id)">
+                                        type="checkbox" [value]="item.id"
+                                        (change)="updateSelectedInterests($event.target.checked, item.id)">
                                 </div>
                             </div>
                         </div>
@@ -115,7 +116,7 @@
                     <!-- <input type="text" name="interviewType" class="form-control" id="type" placeholder="Interview Type" [(ngModel)]="formData.interviewType"> -->
                     <select class="form-select" name="interviewType" [(ngModel)]="formData.interviewType">
                         <option value="HR">HR</option>
-                        <option value="TEQNIQAL">teqniqal</option>
+                        <option value="TECHNICAL">TECHNICAL</option>
                     </select>
                 </div>
 
@@ -136,10 +137,10 @@
 
 
 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="date" class="form-label">Date</label>
                     <input type="date" class="form-control" id="date" name="date" [(ngModel)]="formData.date">
-                </div>
+                </div> -->
 
                 <div class="mb-3">
                     <textarea class="form-control" id="exampleFormControlTextarea1" name="notes"
