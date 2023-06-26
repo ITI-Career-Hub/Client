@@ -13,6 +13,7 @@ import { TrackService } from 'src/app/services/track.service';
 import { DataService } from '../tables/data.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AppointemtService } from 'src/app/services/appointemt.service';
+import { ApproveInterviewComponent } from 'src/app/approve-interview/approve-interview.component';
 
 
 @Component({
@@ -31,12 +32,15 @@ export class CompanyStatusComponent implements OnInit {
   trackCount: number;
   companyCount: number;
   eventName: string;
+  isAdmin: boolean;
+  eventId: number;
 
   constructor(private route: ActivatedRoute, private appointmentService: AppointemtService, private router: Router, private readonly trackService: TrackService, private readonly companyService: CompanyService, private readonly dataService: DataService, public dialog: MatDialog, private eventService: EventService) { }
 
 
   openModal(tab: string): void {
-    this.dialog.open(AddModalComponent, {
+    console.log(tab)
+    this.dialog.open(ApproveInterviewComponent, {
       width: '400px',
       data: { tab: tab }
     });
@@ -60,7 +64,7 @@ export class CompanyStatusComponent implements OnInit {
   // trackColumns = ['track', 'discipline', 'supervisor', /*'students',*/ 'edit'];
   // companyColumns = ['companyName', 'edit'];
 
-  companyInterviewsColumns = ['track', 'interviewType', 'interviewers', 'date', 'room', 'edit']
+  companyInterviewsColumns = ['track', 'interviewType', 'interviewers', 'date', 'room', /*'edit'*/]
 
 
   // dataSource: MatTableDataSource<UserData>;
@@ -79,14 +83,14 @@ export class CompanyStatusComponent implements OnInit {
 
     // If it is company
     this.route.params.subscribe(params => {
-      const eventId = params['eventId'];
+      this.eventId = params['eventId'];
       const userData = JSON.parse(localStorage.getItem("userInfo"))
       const companyId = userData["id"];
       const role = userData["roleName"]
-
+      this.isAdmin = String(role).toLowerCase() == "admin";
       console.log("ID: " + userData["id"])
 
-      this.eventService.getEvent(eventId).subscribe(
+      this.eventService.getEvent(this.eventId).subscribe(
         (response) => {
           this.eventName = response["eventName"]
         },
@@ -94,15 +98,15 @@ export class CompanyStatusComponent implements OnInit {
           console.log(error)
         })
 
-      if (eventId && companyId && role == "COMPANY") {
-        console.log("EVent: " + eventId + " Comp : " + companyId)
-        this.doCompanyAPICallForInterviews(eventId, companyId)
-      } else if (eventId && role == "ADMIN") {
-        this.doAdminAPICallForInterviews(eventId)
+      if (this.eventId && companyId && role == "COMPANY") {
+        console.log("EVent: " + this.eventId + " Comp : " + companyId)
+        this.doCompanyAPICallForInterviews(this.eventId, companyId)
+      } else if (this.eventId && role == "ADMIN") {
+        this.doAdminAPICallForInterviews(this.eventId)
       }
-      else if (eventId && role == "STAFF") {
+      else if (this.eventId && role == "STAFF") {
         const departmentId = userData["departmentId"]
-        this.doStaffAPICallForInterviews(eventId, departmentId)
+        this.doStaffAPICallForInterviews(this.eventId, departmentId)
       }
 
     });
@@ -224,6 +228,8 @@ export class CompanyStatusComponent implements OnInit {
   }
 
 
+
+
   progressPercent: number = 0;
 
   image: string | null = null;
@@ -245,6 +251,15 @@ export class CompanyStatusComponent implements OnInit {
       reader.readAsDataURL(file);
     }
 
+  }
+
+  addInterview() {
+    this.router.navigateByUrl(`/discipline/${this.eventId}`)
+  }
+
+
+  onSceduledInterviewRowClick(row: any) {
+    this.router.navigateByUrl(`/interviews/${row.id}`)
   }
 
 }

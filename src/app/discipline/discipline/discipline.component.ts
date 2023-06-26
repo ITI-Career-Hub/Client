@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DisciplineService } from 'src/app/services/discipline.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-discipline',
@@ -19,7 +21,7 @@ export class DisciplineComponent implements OnInit {
   formData: any = {};
   selectedInterests: string[] = [];
 
-  constructor(private disciplineService: DisciplineService) { }
+  constructor(private route: ActivatedRoute, private location: Location, private disciplineService: DisciplineService) { }
 
   ngOnInit(): void {
     this.getDiscipine();
@@ -118,28 +120,39 @@ export class DisciplineComponent implements OnInit {
 
 
   save() {
-   let interviewData = {
-    appointmentName: this.trackName,
-    interviewType: this.formData.interviewType,
-    interviewers : this.interviewers,
-    interviewNotes :this.formData.notes,
-    departmentId:this.formData.trackid,
-    companyId:3,
-    eventId:1,
-    studentIds: this.selectedInterests
-   };
+
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+
+    console.log(userInfo)
+    let eventId: number;
+
+    this.route.params.subscribe(params => {
+      eventId = params['eventId'];
+    });
+
+    let interviewData = {
+      appointmentName: this.trackName,
+      interviewType: this.formData.interviewType,
+      interviewers: this.interviewers,
+      interviewNotes: this.formData.notes,
+      departmentId: this.formData.trackid,
+      companyId: userInfo["id"],
+      eventId: eventId,
+      studentIds: this.selectedInterests
+    };
 
 
-   console.log(interviewData);
+    console.log(interviewData);
 
-   this.disciplineService.ScheduleInterview(interviewData).subscribe(
-    (response) => {
-      console.log(response);
-    },
-    (error) => {
-      console.error('Error', error);
-    }
-   );
+    this.disciplineService.ScheduleInterview(interviewData).subscribe(
+      (response) => {
+        console.log(response);
+        this.location.back()
+      },
+      (error) => {
+        console.error('Error', error);
+      }
+    );
   }
 
 }

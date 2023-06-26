@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CompanyAttendaceService } from 'src/app/services/companyAttendace.service';
 
 @Component({
@@ -11,11 +12,16 @@ export class CompanyAttendanceComponent implements OnInit {
   waitingStudents = [];
   doneStudents = [];
   src = '';
-
-  constructor(private companyAttendaceService: CompanyAttendaceService) { }
+  eventId: number;
+  constructor(private route: ActivatedRoute, private companyAttendaceService: CompanyAttendaceService) { }
 
   ngOnInit(): void {
-    this.companyAttendaceService.getAttendece(1).subscribe(
+    this.route.params.subscribe(params => {
+      this.eventId = params['eventId'];
+    })
+
+
+    this.companyAttendaceService.getAttendece(this.eventId).subscribe(
       (response) => {
         response.forEach(e => {
           if (e.attendanceStatus == 'PENDING') {

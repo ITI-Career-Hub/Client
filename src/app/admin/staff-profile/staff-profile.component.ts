@@ -26,6 +26,8 @@ export class StaffProfileComponent implements OnInit {
   studtesSize = 0;
   eventSize = 0;
 
+  firstName: string;
+  lastName: string;
   openModal(tab: string): void {
     this.dialog.open(AddModalComponent, {
       width: '400px',
@@ -62,7 +64,10 @@ export class StaffProfileComponent implements OnInit {
   ngOnInit() {
     // this.dataSource = new MatTableDataSource(this.dataService.create100Users());
     // this.selection = new SelectionModel<UserData>(true, []);
-
+    const userData = JSON.parse(localStorage.getItem("userInfo"))
+    this.image = userData.pictureUrl
+    this.firstName = userData["firstName"]
+    this.lastName = userData["lastName"]
     this.staffProfileService.getStudents(1).subscribe((response) => {
       this.studentsData = response
       this.studtesSize = response.length;
@@ -147,6 +152,11 @@ export class StaffProfileComponent implements OnInit {
 
   onEventRowClick(row: any) {
     this.router.navigateByUrl(`/company/status/${row.id}`)
+  }
+
+
+  edit() {
+    this.router.navigateByUrl("/staff/edit")
   }
 
 }
